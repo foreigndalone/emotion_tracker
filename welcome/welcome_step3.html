@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome – Step 3</title>
+  <link rel="stylesheet" href="step3.css">
+</head>
+<body>
+  <header>
+    <h1>When would you like me to remind you to reflect?</h1>
+    <h2>Add one or more moments in the day when you’d like a gentle nudge.</h2>
+    <p>You’ll be able to adjust this anytime in Settings.</p>
+  </header>
+
+  <main>
+    <section class="form_container">
+      <form id="reminderForm" class="form">
+        <fieldset>
+          <legend>Set your reminder time</legend>
+
+          <div class="time-picker">
+            <div class="picker hours">
+              <label for="hours">Hours</label>
+              <div class="scroll-list" id="hours">
+                <!-- 24-часовой формат -->
+                <span>00</span><span>01</span><span>02</span><span>03</span>
+                <span>04</span><span>05</span><span>06</span><span>07</span>
+                <span>08</span><span>09</span><span>10</span><span>11</span>
+                <span>12</span><span>13</span><span>14</span><span>15</span>
+                <span>16</span><span>17</span><span>18</span><span>19</span>
+                <span>20</span><span>21</span><span>22</span><span>23</span>
+              </div>
+            </div>
+
+            <div class="picker minutes">
+              <label for="minutes">Minutes</label>
+              <div class="scroll-list" id="minutes">
+                <span>00</span><span>05</span><span>10</span><span>15</span>
+                <span>20</span><span>25</span><span>30</span><span>35</span>
+                <span>40</span><span>45</span><span>50</span><span>55</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="save-btn">Save</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <button>Continue</button>
+  </footer>
+</body>
+</html>

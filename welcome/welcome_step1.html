@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <h1>Let’s start with a few basics.</h1>
+        <h2>This will help me personalize your reflections and keep your data safe.</h2>
+    </header>
+    <main>
+        <div class="form_container">
+            <form action="" id="personalInfo">
+                <fieldset>
+                    <legend>Personal Info</legend>
+                        <label for="userName">Name:</label>
+                        <input type="text" name="userName" placeholder="Enter your name"><br>
+
+                        <label for="userAge">Age:</label>
+                        <input type="number" name="userAge" placeholder="Enter your age">
+                </fieldset>
+                <div class="consent_class">
+                <input type="checkbox" id="consent" name="consent" value="agree" required>
+                <label for="consent">I agree that my reflections may be analyzed by AI for insight generation.Your data is stored privately and never shared with third parties.</label>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>We respect your privacy. You can delete your data anytime.</p>
+        <button type="submit" form="personalInfo">Continue</button>
+    </footer>
+</body>
+</html>

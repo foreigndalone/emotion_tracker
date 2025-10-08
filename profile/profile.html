@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Profile</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Profile</a></li>
+            <li><a href="">History</a></li>
+            <li><a href="">Insights</a></li>
+        </ul>
+    </nav>
+  <header class="profile-header">
+    <button type="button" class="back-btn" onclick="window.location.href='main.html'">← Back</button>
+    <h1>Your Profile</h1>
+  </header>
+
+  <main class="profile-main">
+        <aside class="profile-sidebar">
+      <ul class="tab-menu">
+        <li class="tab-link active" data-tab="personal">👤 Personal details</li>
+        <li class="tab-link" data-tab="reminders">⏰ Reminders</li>
+        <li class="tab-link" data-tab="privacy">🔒 Privacy & data</li>
+      </ul>
+    </aside>
+    <!-- Раздел: личные данные -->
+    <section class="personal-details">
+      <h2>Personal details</h2>
+      <form id="profileForm">
+        <label for="userName">Name:</label>
+        <input type="text" id="userName" name="userName" placeholder="Your name">
+
+        <label for="userAge">Age:</label>
+        <input type="number" id="userAge" name="userAge" placeholder="Your age">
+
+        <label for="userGoal">Your goal:</label>
+        <select id="userGoal" name="userGoal">
+          <option value="understand">Understand my emotions better</option>
+          <option value="track">Track my daily mood</option>
+          <option value="notice">Notice patterns over time</option>
+          <option value="calmer">Feel calmer and more aware</option>
+        </select>
+      </form>
+    </section>
+
+    <!-- Раздел: ежедневные напоминания -->
+    <section class="daily-reminders">
+      <h2>Daily reminders</h2>
+
+      <ul class="reminder-list" id="profileReminderList">
+        <li class="reminder-item">
+          <span>08:30</span>
+          <button class="edit-btn" type="button">Edit</button>
+          <button class="delete-btn" type="button">✕</button>
+        </li>
+      </ul>
+
+      <button class="add-btn" type="button">+ Add reminder</button>
+    </section>
+
+    <!-- Раздел: приватность и данные -->
+    <section class="privacy-section">
+      <h2>Privacy & data</h2>
+      <p>Your reflections are stored locally and never shared with third parties.</p>
+      <button class="delete-data-btn" type="button">Delete all my data</button>
+    </section>
+
+  </main>
+
+  <footer class="profile-footer">
+    <button class="save-btn" type="submit" form="profileForm">Save changes</button>
+  </footer>
+
+</body>
+</html>

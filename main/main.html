@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Profile</a></li>
+                <li><a href="">History</a></li>
+                <li><a href="">Insights</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Good afternoon, Elvis 🌞How are you feeling today?</h1>
+        <h2>Take a moment to notice what’s going on inside.</h2>
+        <button><a href="">✍️ Make a new reflection</a></button>
+        <section>
+            <h2>Recent reflections</h2>
+                <ul>
+                    <li>
+                        <div>
+                            <p>First</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p>First</p>
+                        </div>
+                    </li>
+                </ul>
+            <button><a href="">View all</a></button>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <div id="newReflectionModal" class="modal hidden">
+  <div class="modal-content">
+
+    <h2>New Reflection</h2>
+    <p>Write down your thoughts or feelings</p>
+
+    <form id="reflectionForm">
+      <textarea name="reflectionText" id="reflectionText" placeholder="How are you feeling?"></textarea>
+
+      <div class="mood-select">
+        <label for="mood">Your mood:</label>
+        <select name="mood" id="mood">
+          <option value="happy">😊 Happy</option>
+          <option value="calm">😌 Calm</option>
+          <option value="neutral">😐 Neutral</option>
+          <option value="sad">😔 Sad</option>
+          <option value="angry">😠 Angry</option>
+        </select>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="saveReflectionBtn">Save</button>
+        <button type="button" id="closeModalBtn">Cancel</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+</body>
+</html>

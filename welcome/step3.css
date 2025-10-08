@@ -1,0 +1,200 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === базовый layout === */
+body {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  margin-left: 52vw;
+  margin-top: 4vw;
+  gap: 2vw;
+  background: #fff;
+  color: #222;
+  font-family: system-ui, sans-serif;
+}
+
+/* === заголовки === */
+header h1 {
+  font-size: 3vw;
+  line-height: 3.5vw;
+}
+
+header > h2 {
+  margin-top: 1vw;
+  font-size: 2vw;
+  line-height: 2vw;
+}
+
+header p {
+  margin-top: 0.8vw;
+  font-size: 1.2vw;
+  color: #666;
+}
+
+/* === контейнер формы === */
+.form_container {
+  width: 40vw;
+  background: white;
+  border-radius: 1.5vw;
+  box-shadow: 0 0 2vw rgba(0, 0, 0, 0.05);
+  padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vw;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  display: none;
+}
+
+/* === time picker === */
+.time-picker {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2vw;
+  margin-top: 1vw;
+}
+
+.picker {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.picker label {
+  display: block;
+  margin-bottom: 0.8vw;
+  font-size: 1.3vw;
+  color: #333;
+  font-weight: 500;
+}
+
+/* список часов и минут */
+.scroll-list {
+  height: 10vw;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+  border: 0.1vw solid #ddd;
+  border-radius: 0.6vw;
+  background: #fafafa;
+}
+
+.scroll-list::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-list span {
+  display: block;
+  height: 2vw;
+  line-height: 2vw;
+  font-size: 1.4vw;
+  color: #333;
+  scroll-snap-align: center;
+}
+
+/* подсветка центральной зоны */
+.scroll-list::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 2.5vw;
+  background: rgba(139, 140, 255, 0.08);
+  border-top: 0.1vw solid rgba(139, 140, 255, 0.3);
+  border-bottom: 0.1vw solid rgba(139, 140, 255, 0.3);
+  pointer-events: none;
+}
+
+/* === кнопки Save / Cancel === */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5vw;
+  margin-top: 2vw;
+}
+
+.save-btn,
+.cancel-btn {
+  font-size: 1.1vw;
+  padding: 0.8vw 1.6vw;
+  border: 0.15vw solid #ccc;
+  border-radius: 0.8vw;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-btn:hover {
+  background: #f4f4ff;
+  border-color: #8b8cff;
+}
+
+.cancel-btn:hover {
+  background: #f8f8f8;
+  border-color: #bbb;
+}
+
+/* === нижняя кнопка Continue === */
+footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer button {
+  margin-left: 26vw;
+  align-self: flex-end;
+  width: 14vw;
+  padding: 1vw 0;
+  border: 0.15vw solid #ccc;
+  border-radius: 1vw;
+  background: #ffffff;
+  color: inherit;
+  font-size: 1.1vw;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 0.3vw 0.8vw rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+a {
+  text-decoration: none;
+}
+
+footer button a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+footer button:hover {
+  background: #f4f4ff;
+  border-color: #bbb;
+  box-shadow: 0 0.4vw 1vw rgba(0, 0, 0, 0.1);
+  transform: translateY(-0.1vw);
+}
+
+footer button:active {
+  transform: translateY(0);
+  box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.05);
+}
