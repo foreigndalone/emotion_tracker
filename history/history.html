@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History – My Reflections</title>
+  <link rel="stylesheet" href="history.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="#" class="nav__link" id="js-home">Home</a></li>
+        <li><a href="#" class="nav__link" id="js-profile">Profile</a></li>
+        <li><a href="#" class="nav__link active" id="js-history">History</a></li>
+        <li><a href="#" class="nav__link" id="js-insights">Insights</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="intro">
+      <h1 class="intro__title">My Reflections</h1>
+      <h2 class="intro__subtitle">Look back and see how you’ve been feeling over time.</h2>
+    </section>
+
+    <section class="reflections">
+      <div class="reflections__header">
+        <h3 class="reflections__title">Recent reflections</h3>
+
+        <div class="reflections__search">
+          <input type="text" class="reflections__input" placeholder="Search...">
+          <button id="openFilterBtn" class="reflections__filter-btn">
+            <img src="/items/Filter.svg" alt="Filter icon" width="24" height="24">
+          </button>
+        </div>
+      </div>
+
+      <ul class="reflections__list" id="reflections__list">
+        <li class="reflection-card">
+          <h3 class="reflection-card__title">This week’s mood summary</h3>
+          <p class="reflection-card__text">
+            You’ve mostly written about calmness and fatigue this week. Remember to take small breaks during the day.
+          </p>
+        </li>
+        <li class="reflection-card">
+          <h3 class="reflection-card__title">Last week’s mood summary</h3>
+          <p class="reflection-card__text">
+            You experienced more positive and calm moods compared to previous weeks. Keep focusing on rest and balance.
+          </p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- === FILTER MODAL === -->
+  <div id="filterModal" class="modal hidden">
+    <div class="modal__content">
+      <h2 class="modal__title">Filter reflections</h2>
+
+      <form class="modal__form">
+        <div class="modal__group">
+          <label for="moodSelect">Mood:</label>
+          <select id="moodSelect" class="modal__select">
+            <option value="all">All moods</option>
+            <option value="happy">😊 Happy</option>
+            <option value="calm">😌 Calm</option>
+            <option value="neutral">😐 Neutral</option>
+            <option value="sad">😔 Sad</option>
+            <option value="angry">😠 Angry</option>
+          </select>
+        </div>
+
+        <div class="modal__group">
+          <label>Date range:</label>
+          <div class="modal__dates">
+            <input type="date" id="dateFrom">
+            <span>—</span>
+            <input type="date" id="dateTo">
+          </div>
+        </div>
+
+        <div class="modal__group">
+          <label>Sentiment:</label>
+          <div class="modal__sentiments">
+            <label><input type="radio" name="sentiment" value="positive"> Positive</label>
+            <label><input type="radio" name="sentiment" value="neutral"> Neutral</label>
+            <label><input type="radio" name="sentiment" value="negative"> Negative</label>
+          </div>
+        </div>
+
+        <div class="modal__actions">
+          <button type="button" class="button button--secondary" id="closeFilterBtn">Cancel</button>
+          <button type="button" class="button">Apply filters</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="history.js"></script>
+</body>
+</html>

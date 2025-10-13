@@ -1,0 +1,162 @@
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === BODY === */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #fafafa;
+  color: #222;
+}
+
+/* === NAVBAR === */
+.nav__list {
+  display: flex;
+  justify-content: center;
+  gap: 3vw;
+  list-style: none;
+  padding: 2vw 0;
+}
+
+.nav__link {
+  text-decoration: none;
+  font-size: 1.2vw;
+  color: #666;
+  transition: color 0.3s;
+}
+.nav__link:hover,
+.nav__link.active {
+  color: #000;
+}
+
+/* === PROFILE LAYOUT === */
+.profile {
+  display: flex;
+  width: 70vw;
+  margin: 2vw auto;
+  gap: 3vw;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  flex: 0 0 30%;
+  background: #fff;
+  border-radius: 1vw;
+  box-shadow: 0 0 1vw rgba(0,0,0,0.05);
+  padding: 2vw;
+  height: fit-content;
+}
+
+.sidebar__menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+}
+
+.sidebar__link {
+  text-decoration: none;
+  font-size: 1.1vw;
+  color: #555;
+  padding: 0.8vw 1vw;
+  border-radius: 0.8vw;
+  transition: all 0.2s ease;
+}
+.sidebar__link:hover {
+  background: #f4f4ff;
+  color: #000;
+}
+.sidebar__link.active {
+  background: #eaeaff;
+  color: #000;
+  font-weight: 600;
+}
+
+/* === CONTENT AREA === */
+.profile__content {
+  flex: 1;
+  background: #fff;
+  border-radius: 1vw;
+  box-shadow: 0 0 1vw rgba(0,0,0,0.05);
+  padding: 2.5vw;
+}
+
+.profile__title {
+  font-size: 2vw;
+  margin-bottom: 2vw;
+}
+
+/* === FORMS === */
+.profile__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2vw;
+}
+
+.profile__form input,
+.profile__form select {
+  padding: 0.8vw;
+  border-radius: 0.6vw;
+  border: 0.1vw solid #ccc;
+  font-size: 1vw;
+  background: #fafafa;
+}
+
+/* === REMINDERS === */
+.reminder-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+}
+
+.reminder-item {
+  background: #fff;
+  border: 0.1vw solid #ddd;
+  border-radius: 0.8vw;
+  padding: 1vw 1.5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reminder-actions {
+  display: flex;
+  gap: 0.6vw;
+}
+
+/* === BUTTONS === */
+.button {
+  padding: 0.8vw 1.6vw;
+  border-radius: 0.8vw;
+  border: 0.15vw solid #ccc;
+  background: #fff;
+  font-size: 1vw;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.button:hover {
+  background: #f4f4ff;
+  border-color: #bbb;
+}
+
+.button--secondary {
+  background: #fafafa;
+}
+
+.button--danger {
+  background: #ffe6e6;
+  border-color: #f5aaaa;
+  color: #a33;
+}
+.button--danger:hover {
+  background: #ffd2d2;
+}
+
+/* === ADD BUTTON === */
+.add-btn {
+  margin-top: 1.5vw;
+}
