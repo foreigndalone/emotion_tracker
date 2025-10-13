@@ -10,10 +10,10 @@
   <header class="header">
     <nav class="nav">
       <ul class="nav__list">
-        <li><a href="#" class="nav__link active">Home</a></li>
-        <li><a href="#" class="nav__link">Profile</a></li>
-        <li><a href="#" class="nav__link">History</a></li>
-        <li><a href="#" class="nav__link">Insights</a></li>
+        <li><a href="#" class="nav__link active" id="js-home">Home</a></li>
+        <li><a href="#" class="nav__link" id="js-profile">Profile</a></li>
+        <li><a href="#" class="nav__link" id="js-history">History</a></li>
+        <li><a href="#" class="nav__link" id="js-insights">Insights</a></li>
       </ul>
     </nav>
   </header>
@@ -28,10 +28,9 @@
     <section class="reflections">
       <div class="reflections__header">
         <h2 class="reflections__title">Recent reflections</h2>
-        <button class="button button--secondary">View all</button>
       </div>
 
-      <ul class="reflections__list">
+      <ul class="reflections__list" id="reflections__list" >
         <li class="reflection-card">
           <h3 class="reflection-card__title">This week’s mood summary</h3>
           <p class="reflection-card__text">You’ve mostly written about calmness and fatigue this week. Remember to take small breaks during the day.</p>
@@ -42,6 +41,7 @@
           <p class="reflection-card__text">You’ve mostly written about calmness and fatigue this week. Remember to take small breaks during the day.</p>
         </li>
       </ul>
+      <button class="button button--secondary">View all</button>
     </section>
   </main>
 
