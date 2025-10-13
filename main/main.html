@@ -1,72 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main – Reflections</title>
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">Profile</a></li>
-                <li><a href="">History</a></li>
-                <li><a href="">Insights</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h1>Good afternoon, Elvis 🌞How are you feeling today?</h1>
-        <h2>Take a moment to notice what’s going on inside.</h2>
-        <button><a href="">✍️ Make a new reflection</a></button>
-        <section>
-            <h2>Recent reflections</h2>
-                <ul>
-                    <li>
-                        <div>
-                            <p>First</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <p>First</p>
-                        </div>
-                    </li>
-                </ul>
-            <button><a href="">View all</a></button>
-        </section>
-    </main>
-    <footer>
+  <header class="header">
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="#" class="nav__link active">Home</a></li>
+        <li><a href="#" class="nav__link">Profile</a></li>
+        <li><a href="#" class="nav__link">History</a></li>
+        <li><a href="#" class="nav__link">Insights</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    </footer>
-    <div id="newReflectionModal" class="modal hidden">
-  <div class="modal-content">
+  <main class="main">
+    <section class="intro">
+      <h1 class="intro__title">Good afternoon, Elvis 🌞 How are you feeling today?</h1>
+      <h2 class="intro__subtitle">Take a moment to notice what’s going on inside.</h2>
+      <button id="openModalBtn" class="button">✍️ Make a new reflection</button>
+    </section>
 
-    <h2>New Reflection</h2>
-    <p>Write down your thoughts or feelings</p>
-
-    <form id="reflectionForm">
-      <textarea name="reflectionText" id="reflectionText" placeholder="How are you feeling?"></textarea>
-
-      <div class="mood-select">
-        <label for="mood">Your mood:</label>
-        <select name="mood" id="mood">
-          <option value="happy">😊 Happy</option>
-          <option value="calm">😌 Calm</option>
-          <option value="neutral">😐 Neutral</option>
-          <option value="sad">😔 Sad</option>
-          <option value="angry">😠 Angry</option>
-        </select>
+    <section class="reflections">
+      <div class="reflections__header">
+        <h2 class="reflections__title">Recent reflections</h2>
+        <button class="button button--secondary">View all</button>
       </div>
 
-      <div class="modal-actions">
-        <button type="button" id="saveReflectionBtn">Save</button>
-        <button type="button" id="closeModalBtn">Cancel</button>
-      </div>
-    </form>
+      <ul class="reflections__list">
+        <li class="reflection-card">
+          <h3 class="reflection-card__title">This week’s mood summary</h3>
+          <p class="reflection-card__text">You’ve mostly written about calmness and fatigue this week. Remember to take small breaks during the day.</p>
+        </li>
 
+        <li class="reflection-card">
+          <h3 class="reflection-card__title">This week’s mood summary</h3>
+          <p class="reflection-card__text">You’ve mostly written about calmness and fatigue this week. Remember to take small breaks during the day.</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__text">© 2025 Reflection Journal</p>
+  </footer>
+
+  <!-- Modal -->
+  <div id="newReflectionModal" class="modal hidden">
+    <div class="modal__content">
+      <h2 class="modal__title">New Reflection</h2>
+      <p class="modal__subtitle">Write down your thoughts or feelings</p>
+
+      <form id="reflectionForm" class="modal__form">
+        <textarea name="reflectionText" id="reflectionText" class="modal__textarea" placeholder="How are you feeling?"></textarea>
+
+        <div class="modal__mood">
+          <label for="mood">Your mood:</label>
+          <select name="mood" id="mood" class="modal__select">
+            <option value="happy">😊 Happy</option>
+            <option value="calm">😌 Calm</option>
+            <option value="neutral">😐 Neutral</option>
+            <option value="sad">😔 Sad</option>
+            <option value="angry">😠 Angry</option>
+          </select>
+        </div>
+
+        <div class="modal__actions">
+          <button type="button" id="saveReflectionBtn" class="button">Save</button>
+          <button type="button" id="closeModalBtn" class="button button--secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
+
+  <script src="main.js"></script>
 </body>
 </html>

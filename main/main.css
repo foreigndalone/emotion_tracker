@@ -1,0 +1,192 @@
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === LAYOUT === */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* основной контент сверху, но по центру */
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #fafafa;
+  font-family: "Inter", sans-serif;
+  color: #222;
+  gap: 3vw;
+  padding-top: 5vw;
+}
+
+/* === HEADER / NAVIGATION === */
+.nav__list {
+  display: flex;
+  gap: 3vw;
+  list-style: none;
+  justify-content: center;
+}
+
+.nav__link {
+  text-decoration: none;
+  font-size: 1.2vw;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.nav__link:hover,
+.nav__link.active {
+  color: #000;
+}
+
+/* === MAIN INTRO SECTION === */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 60vw;
+  gap: 2vw;
+}
+
+.intro__title {
+  font-size: 3vw;
+  line-height: 3.5vw;
+}
+
+.intro__subtitle {
+  font-size: 1.8vw;
+  line-height: 2.3vw;
+  color: #444;
+}
+
+/* === BUTTONS === */
+.button {
+  margin-top: 2vw;
+  width: 16vw;
+  padding: 1vw 0;
+  border: 0.15vw solid #ccc;
+  border-radius: 1vw;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1.1vw;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  background: #f4f4ff;
+  border-color: #bbb;
+}
+
+.button--secondary {
+  background: #fafafa;
+  border-color: #ddd;
+}
+
+/* === REFLECTIONS SECTION === */
+.reflections {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5vw;
+  margin-top: 3vw;
+}
+
+.reflections__title {
+  font-size: 2vw;
+  margin-bottom: 1vw;
+}
+
+.reflections__list {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vw;
+}
+
+.reflection-card {
+  background: #fff;
+  border-radius: 1vw;
+  box-shadow: 0 0 1vw rgba(0, 0, 0, 0.05);
+  padding: 2vw;
+}
+
+.reflection-card__title {
+  font-size: 1.4vw;
+  margin-bottom: 0.6vw;
+}
+
+.reflection-card__text {
+  font-size: 1.1vw;
+  color: #555;
+  line-height: 1.6vw;
+}
+
+/* === FOOTER === */
+.footer {
+  margin-top: 3vw;
+  font-size: 1vw;
+  color: #777;
+}
+
+/* === MODAL === */
+.hidden {
+  display: none !important;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__content {
+  background: #fff;
+  border-radius: 1.2vw;
+  padding: 3vw;
+  width: 30vw;
+  box-shadow: 0 0 2vw rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vw;
+}
+
+.modal__title {
+  font-size: 2vw;
+  text-align: center;
+}
+
+.modal__textarea {
+  width: 100%;
+  height: 10vw;
+  border-radius: 0.8vw;
+  border: 0.1vw solid #ccc;
+  padding: 1vw;
+  resize: none;
+  font-size: 1vw;
+}
+
+.modal__select {
+  margin-top: 0.6vw;
+  width: 100%;
+  padding: 0.8vw;
+  border-radius: 0.6vw;
+  border: 0.1vw solid #ccc;
+}
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1vw;
+  margin-top: 2vw;
+}

@@ -17,10 +17,10 @@
                 <fieldset>
                     <legend>Personal Info</legend>
                         <label for="userName">Name:</label>
-                        <input type="text" name="userName" placeholder="Enter your name"><br>
+                        <input type="text" name="userName" placeholder="Enter your name" id="userName"><br>
 
                         <label for="userAge">Age:</label>
-                        <input type="number" name="userAge" placeholder="Enter your age">
+                        <input type="number" name="userAge" placeholder="Enter your age" id="userAge">
                 </fieldset>
                 <div class="consent_class">
                 <input type="checkbox" id="consent" name="consent" value="agree" required>
@@ -31,7 +31,8 @@
     </main>
     <footer>
         <p>We respect your privacy. You can delete your data anytime.</p>
-        <button type="submit" form="personalInfo">Continue</button>
+        <button type="submit" form="personalInfo" id ='js-button'>Continue</button>
     </footer>
+    <script src="welcome.js" defer></script>
 </body>
 </html>

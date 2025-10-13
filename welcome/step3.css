@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-/* === базовый layout === */
 body {
   display: flex;
   flex-direction: column;
@@ -17,7 +16,7 @@ body {
   font-family: system-ui, sans-serif;
 }
 
-/* === заголовки === */
+/* Заголовки */
 header h1 {
   font-size: 3vw;
   line-height: 3.5vw;
@@ -35,7 +34,7 @@ header p {
   color: #666;
 }
 
-/* === контейнер формы === */
+/* Контейнер */
 .form_container {
   width: 40vw;
   background: white;
@@ -61,7 +60,7 @@ legend {
   display: none;
 }
 
-/* === time picker === */
+/* Time Picker */
 .time-picker {
   display: flex;
   justify-content: space-between;
@@ -84,7 +83,7 @@ legend {
   font-weight: 500;
 }
 
-/* список часов и минут */
+/* Список часов и минут */
 .scroll-list {
   height: 10vw;
   overflow-y: scroll;
@@ -108,24 +107,25 @@ legend {
   font-size: 1.4vw;
   color: #333;
   scroll-snap-align: center;
+  transition: all 0.25s ease;
 }
 
-/* подсветка центральной зоны */
+/* подсветка выбранного времени */
 .scroll-list::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 100%;
-  height: 2.5vw;
-  background: rgba(139, 140, 255, 0.08);
-  border-top: 0.1vw solid rgba(139, 140, 255, 0.3);
-  border-bottom: 0.1vw solid rgba(139, 140, 255, 0.3);
-  pointer-events: none;
+  display: none;
 }
 
-/* === кнопки Save / Cancel === */
+.scroll-list span.selected {
+  position: relative;
+  z-index: 5;
+  background: rgba(139, 140, 255, 0.18);
+  color: #3b3cff;
+  font-weight: 600;
+  border-radius: 0.5vw;
+  box-shadow: 0 0 0.6vw rgba(139, 140, 255, 0.25);
+}
+
+/* Кнопки Save / Cancel */
 .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -155,7 +155,7 @@ legend {
   border-color: #bbb;
 }
 
-/* === нижняя кнопка Continue === */
+/* Footer */
 footer {
   display: flex;
   justify-content: flex-end;
@@ -178,15 +178,6 @@ footer button {
   transition: all 0.25s ease;
 }
 
-a {
-  text-decoration: none;
-}
-
-footer button a:visited {
-  color: inherit;
-  text-decoration: none;
-}
-
 footer button:hover {
   background: #f4f4ff;
   border-color: #bbb;
@@ -197,4 +188,49 @@ footer button:hover {
 footer button:active {
   transform: translateY(0);
   box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.05);
+}
+
+
+/* === сохранённые напоминания === */
+#savedReminders {
+  margin-top: 1.5vw;
+  border-top: 0.1vw solid #eee;
+  padding-top: 1vw;
+}
+
+#savedReminders.hidden {
+  display: none;
+}
+
+#reminderList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8vw;
+  margin-top: 0.8vw;
+}
+
+.reminder-item {
+  background: rgba(139, 140, 255, 0.15);
+  border: 0.1vw solid #8b8cff;
+  border-radius: 1vw;
+  padding: 0.4vw 0.8vw;
+  font-size: 1vw;
+  color: #3b3cff;
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+}
+
+.reminder-item button {
+  background: none;
+  border: none;
+  font-size: 1vw;
+  color: #3b3cff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.scroll-list {
+  padding-top: 4vw;  /* буфер сверху */
+  padding-bottom: 4vw; /* буфер снизу */
 }
