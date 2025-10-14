@@ -1,5 +1,13 @@
 import { renderReflection } from '../modules/scripts/reflectionUtils.js';
 document.addEventListener("DOMContentLoaded", ()=>{
+      // === PERSONALIZED GREETING ===
+  const introTitle = document.querySelector('.intro__title');
+  const savedName = localStorage.getItem('name');
+
+  if (savedName && introTitle) {
+    introTitle.textContent = `Hey, ${savedName}🌞 How are you feeling today?`;
+  }
+
 
     const path = window.location.pathname;
 

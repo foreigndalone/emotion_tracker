@@ -21,4 +21,4 @@ document.addEventListener("DOMContentLoaded", () => {
   savedReflections.forEach(ref => renderReflection(ref, reflectionsList));
 
 
-    });
+    })
