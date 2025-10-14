@@ -1,3 +1,4 @@
+import { renderReflection } from '../modules/scripts/reflectionUtils.js';
 document.addEventListener("DOMContentLoaded", ()=>{
 
     const path = window.location.pathname;
@@ -7,18 +8,22 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const button_profile = document.querySelector('#js-profile')
     const button_history = document.querySelector('#js-history')
     const button_insights = document.querySelector('#js-insights')
+    const button_viewAll = document.getElementById('view-all-js')
 
     button_home.addEventListener('click',()=>{
         window.location.href = 'main.html'
     })
     button_profile.addEventListener('click', ()=>{
-        window.location.href = '../profile/profile.html'
+        window.location.href = '../profile/profile_personal_info.html'
     })
     button_history.addEventListener('click', ()=>{
         window.location.href = '../history/history.html'
     })
     button_insights.addEventListener('click', ()=>{
         window.location.href = '../insights/insights.html'
+    })
+    button_viewAll.addEventListener('click', ()=>{
+        window.location.href = '../history/history.html'
     })
 
 
@@ -33,43 +38,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
 
-    // === функция отрисовки карточки ===
-    function renderReflection(reflection) {
-        if (!reflectionsList) return;
-
-        const li = document.createElement('li');
-        li.classList.add('reflection-card');
-
-        let moodEmoji = '📝';
-        let moodText = 'Reflection';
-        switch (reflection.userMood) {
-            case 'happy': moodEmoji = '😊'; moodText = 'Happy'; break;
-            case 'calm': moodEmoji = '😌'; moodText = 'Calm'; break;
-            case 'neutral': moodEmoji = '😐'; moodText = 'Neutral'; break;
-            case 'sad': moodEmoji = '😔'; moodText = 'Sad'; break;
-            case 'angry': moodEmoji = '😠'; moodText = 'Angry'; break;
-        }
-
-        li.innerHTML = `
-            <div class="reflection-card__mood">
-                <span class="reflection-card__emoji">${moodEmoji} ${moodText}</span>
-                <p class="reflection-card__date">${reflection.dateOfReflection}</p>
-            </div>
-            <p class="reflection-card__text">${reflection.userText || '(no text)'}</p>
-        `;
-
-        reflectionsList.insertAdjacentElement('afterbegin', li);
-    }
-
-
-
     // === при загрузке показываем старые ===
     const savedReflections = JSON.parse(localStorage.getItem('reflections')) || [];
     reflectionsList.innerHTML = '';
-    savedReflections.slice(0, 2).reverse().forEach(renderReflection);
-
-
-
+    savedReflections.slice(0, 2).forEach(ref => renderReflection(ref, reflectionsList));
     // === OPEN AND CLOSE MODAL ===
     openModalBtn.addEventListener('click',()=>{
         reflectionModal.classList.remove('hidden')
@@ -94,27 +66,38 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const reflection = {
             userText: text || '',
             userMood: mood || 'neutral',
-            dateOfReflection: new Date().toLocaleString()
+            dateOfReflection: new Date().toLocaleString(),
+            ts: Date.now()
         };
 
         const reflections = JSON.parse(localStorage.getItem('reflections')) || [];
         reflections.unshift(reflection);
 
-        // ограничиваем длину массива до 2 элементов
-        if (reflections.length > 2) {
-            reflections.pop();
-        }
-
-        // сохраняем обновлённый массив
+        // saving updated list
         localStorage.setItem('reflections', JSON.stringify(reflections));
 
         // отрисовываем заново (новая — сверху)
         reflectionsList.innerHTML = '';
-        reflections.slice(0, 2).reverse().forEach(renderReflection);
+        reflections.slice(0, 2).forEach(ref => renderReflection(ref, reflectionsList));
+        
+        
+        function parseToMs(ref) {
+        if (typeof ref.ts === 'number') return ref.ts;
+        // fallback для старых записей без ts:
+        // попытаемся распарсить "DD.MM.YYYY, HH:MM:SS"
+        const m = String(ref.dateOfReflection || '').match(/^(\d{2})\.(\d{2})\.(\d{4}),\s*(\d{2}):(\d{2})(?::(\d{2}))?$/);
+        if (m) {
+            const [_, dd, mm, yyyy, hh, min, ss] = m;
+            return new Date(+yyyy, +mm - 1, +dd, +hh, +min, +(ss || 0)).getTime();
+        }
+        // если всё совсем криво — отправим в самый конец
+        return 0;
+        }
 
-        // закрываем модалку и чистим поля
+        // closing modal and cleaning modal options
         reflectionModal.classList.add('hidden');
         reflectionText.value = '';
         moodSelect.value = 'neutral';
     })
+
 })

@@ -36,20 +36,20 @@
         </div>
       </div>
 
-      <ul class="reflections__list" id="reflections__list">
-        <li class="reflection-card">
-          <h3 class="reflection-card__title">This week’s mood summary</h3>
-          <p class="reflection-card__text">
-            You’ve mostly written about calmness and fatigue this week. Remember to take small breaks during the day.
-          </p>
-        </li>
-        <li class="reflection-card">
-          <h3 class="reflection-card__title">Last week’s mood summary</h3>
-          <p class="reflection-card__text">
-            You experienced more positive and calm moods compared to previous weeks. Keep focusing on rest and balance.
-          </p>
-        </li>
-      </ul>
+    <ul class="reflections__list" id="reflections__list">
+      <li class="reflection-card">
+        <div class="reflection-card__mood">
+          <span class="reflection-card__emoji">😌 Calm</span>
+          <p class="reflection-card__date">13 October 2025</p>
+        </div>
+        <p class="reflection-card__text">
+          You’ve mostly written about calmness and fatigue this week. Remember to take small breaks during the day.
+        </p>
+        <button class="js-delete">
+          <img src="/items/Delete.svg" alt="Delete reflection">
+        </button>
+      </li>
+    </ul>
     </section>
   </main>
 
@@ -97,6 +97,6 @@
     </div>
   </div>
 
-  <script src="history.js"></script>
+  <script src="history.js" type="module"></script>
 </body>
 </html>

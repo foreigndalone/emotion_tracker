@@ -208,3 +208,55 @@ body {
   gap: 1vw;
   margin-top: 2vw;
 }
+
+
+.reflection-card {
+  position: relative;
+  background: #fff;
+  border-radius: 1vw;
+  box-shadow: 0 0 1vw rgba(0, 0, 0, 0.05);
+  padding: 2vw;
+  overflow: hidden;
+}
+
+.js-delete {
+  position: absolute;
+  top: 50%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+  width: 3vw;
+  height: 3vw;
+  border-radius: 20%;
+  border: 0.12vw solid #ddd;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0.3vw 0.6vw rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  opacity: 0;
+  pointer-events: none; /* по умолчанию не кликается */
+}
+
+.reflection-card:hover .js-delete {
+  opacity: 1;
+  pointer-events: all; /* при наведении — активна */
+}
+
+.js-delete img {
+  width: 1.2vw;
+  height: 1.2vw;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.js-delete:hover {
+  background-color: #f8f8ff;
+  border-color: #bbb;
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.1);
+}
+
+.js-delete:hover img {
+  opacity: 1;
+}
