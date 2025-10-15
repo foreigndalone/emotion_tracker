@@ -168,10 +168,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // === Continue — переход на step 4 ===
   continueBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    if (reminders.length === 0) {
-      alert('Please add at least one reminder time before continuing.');
-      return;
-    }
+    // if (reminders.length === 0) {
+    //   alert('Please add at least one reminder time before continuing.');
+    //   return;
+    // }
     // сохраняем последнее выбранное время (для удобства)
     const lastTime = reminders[reminders.length - 1];
     localStorage.setItem('reminderTime', lastTime);

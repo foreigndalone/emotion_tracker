@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Profile – Privacy</title>
+  <link rel="stylesheet" href="../profile.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="#" class="nav__link" id="js-home">Home</a></li>
+        <li><a href="#" class="nav__link active" id="js-profile">Profile</a></li>
+        <li><a href="#" class="nav__link" id="js-history">History</a></li>
+        <li><a href="#" class="nav__link" id="js-insights">Insights</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="profile">
+    <aside class="sidebar">
+      <ul class="sidebar__menu">
+        <li><a href="profile.html" class="sidebar__link" id="js-personal">👤 Personal details</a></li>
+        <li><a href="profile_reminders.html" class="sidebar__link" id="js-reminders">⏰ Reminders</a></li>
+        <li><a href="profile_privacy.html" class="sidebar__link active" id="js-privacy">🔒 Privacy & data</a></li>
+      </ul>
+    </aside>
+
+    <section class="profile__content">
+      <h1 class="profile__title">Privacy & data</h1>
+      <p>Your reflections are stored locally and never shared with third parties.</p>
+      <button class="button button--danger">🗑 Delete all my data</button>
+    </section>
+  </main>
+  <script src="privacy.js"></script>
+</body>
+</html>

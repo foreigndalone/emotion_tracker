@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Profile – Reminders</title>
+  <link rel="stylesheet" href="reminders.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="#" class="nav__link" id="js-home">Home</a></li>
+        <li><a href="#" class="nav__link active" id="js-profile">Profile</a></li>
+        <li><a href="#" class="nav__link" id="js-history">History</a></li>
+        <li><a href="#" class="nav__link" id="js-insights">Insights</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="profile">
+    <aside class="sidebar">
+      <ul class="sidebar__menu">
+        <li><a href="#" class="sidebar__link" id='js-personal'>👤 Personal details</a></li>
+        <li><a href="#" class="sidebar__link active" id='js-reminders'>⏰ Reminders</a></li>
+        <li><a href="#" class="sidebar__link" id='js-privacy'>🔒 Privacy & data</a></li>
+      </ul>
+    </aside>
+
+    <section class="profile__content">
+      <h1 class="profile__title">Daily reminders</h1>
+
+      <ul class="reminder-list" id="reminderList">
+        <li class="reminder-item">
+          <span>08:30</span>
+          <div class="reminder-actions">
+            <button class="button button--secondary">Edit</button>
+            <button class="button button--danger">✕</button>
+          </div>
+        </li>
+      </ul>
+
+      <button class="button add-btn" id="add-btn">+ Add reminder</button>
+    </section>
+    
+ <!-- === MODAL TIME PICKER === -->
+<section class="form-container hidden">
+  <form class="time-form">
+    <fieldset>
+      <legend>Set your reminder time</legend>
+
+      <div class="time-picker">
+        <div class="picker hours">
+          <label for="hours">Hours</label>
+          <div class="scroll-list" id="hours">
+            <span>00</span><span>01</span><span>02</span><span>03</span>
+            <span>04</span><span>05</span><span>06</span><span>07</span>
+            <span>08</span><span>09</span><span>10</span><span>11</span>
+            <span>12</span><span>13</span><span>14</span><span>15</span>
+            <span>16</span><span>17</span><span>18</span><span>19</span>
+            <span>20</span><span>21</span><span>22</span><span>23</span>
+          </div>
+        </div>
+
+        <div class="picker minutes">
+          <label>Minutes</label>
+          <div class="scroll-list" id="minutes">
+            <span>00</span><span>05</span><span>10</span><span>15</span>
+            <span>20</span><span>25</span><span>30</span><span>35</span>
+            <span>40</span><span>45</span><span>50</span><span>55</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="save-btn button button--secondary" id="save-btn">Save</button>
+        <button type="button" class="cancel-btn button button--secondary" id="cancel-btn">Cancel</button>
+      </div>
+    </fieldset>
+  </form>
+</section>
+  </main>
+  <script src="reminders.js"></script>
+</body>
+</html>

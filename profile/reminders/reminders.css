@@ -161,16 +161,90 @@ body {
   margin-top: 1.5vw;
 }
 
-.hidden {
-  display: none;
+
+/* === TIME PICKER MODAL === */
+fieldset {
+  border: none;}
+.form-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  transform: translateX(50%);
+  width: 50%;
+  background: #fff;
+  border-top-left-radius: 1.5vw;
+  border-top-right-radius: 1.5vw;
+  box-shadow: none;
+  padding: 2vw 3vw;
+  display: none; /* просто скрыта */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  
+}
+legend{
+  text-align: center;
+  font-weight: 700;
+}
+.time-form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vw;
 }
 
+.time-picker {
+  display: flex;
+  justify-content: center;
+  gap: 5vw;
+  margin: 2vw 0;
+}
 
+.picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vw;
+}
 
+.scroll-list {
+  background: #fafafa;
+  border: 0.1vw solid #ddd;
+  border-radius: 0.8vw;
+  padding: 1vw;
+  width: 6vw;
+  height: 10vw;
+  overflow-y: auto;
+  text-align: center;
+}
 
-/* === PRIVACY PAGE === */
-.profile__content .button--danger {
-  margin-top: 3vw; /* регулируй отступ */
+.scroll-list span {
   display: block;
-  width: fit-content; /* чтобы не растягивалась */
+  padding: 0.5vw 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.scroll-list span:hover {
+  background: #eaeaff;
+  border-radius: 0.5vw;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5vw;
+}
+
+/* === ACTIVE SELECTION (highlight current hour/minute) === */
+.scroll-list span.selected {
+  background: #dcdcff;
+  border-radius: 0.6vw;
+  font-weight: 600;
+  color: #000;
+  transition: background 0.2s ease, color 0.2s ease;
+  box-shadow: 0 0 0.4vw rgba(100, 100, 255, 0.4);
 }

@@ -1,12 +1,23 @@
 import { renderReflection } from '../modules/scripts/reflectionUtils.js';
 document.addEventListener("DOMContentLoaded", ()=>{
       // === PERSONALIZED GREETING ===
-  const introTitle = document.querySelector('.intro__title');
-  const savedName = localStorage.getItem('name');
+    const introTitle = document.querySelector('.intro__title');
+    const savedName = localStorage.getItem('name');
+    const now = new Date()
+    const hour = now.getHours()
+    let greeting
+    const br = '<br>'
 
-  if (savedName && introTitle) {
-    introTitle.textContent = `Hey, ${savedName}🌞 How are you feeling today?`;
-  }
+    if (hour>=5&&hour<12){
+        greeting = '☀️ Good morning'
+    }else if(hour>=12&&hour<18){
+        greeting = '🌞 Good afternoon'
+    }else{
+        greeting = '🌙 Good evening'
+    }
+    if (savedName && introTitle) {
+    introTitle.innerHTML = `${greeting}, ${savedName}!${br} How are you feeling today?`;
+    }
 
 
     const path = window.location.pathname;
@@ -22,7 +33,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         window.location.href = 'main.html'
     })
     button_profile.addEventListener('click', ()=>{
-        window.location.href = '../profile/profile_personal_info.html'
+        window.location.href = '../profile/personalInfo/personalInfo.html'
     })
     button_history.addEventListener('click', ()=>{
         window.location.href = '../history/history.html'

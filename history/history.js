@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const reflectionsList = document.querySelector('#reflections__list');
 
   button_home.addEventListener('click', () => window.location.href = '../main/main.html');
-  button_profile.addEventListener('click', () => window.location.href = '../profile/profile_personal_info.html');
+  button_profile.addEventListener('click', () => window.location.href = '../profile/personalInfo/personalInfo.html');
   button_history.addEventListener('click', () => window.location.href = 'history.html');
   button_insights.addEventListener('click', () => window.location.href = '../insights/insights.html');
 
