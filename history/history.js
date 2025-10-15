@@ -14,11 +14,54 @@ document.addEventListener("DOMContentLoaded", () => {
   button_history.addEventListener('click', () => window.location.href = 'history.html');
   button_insights.addEventListener('click', () => window.location.href = '../insights/insights.html');
 
-  // === ПОДГРУЖАЕМ ВСЕ REFLECTIONS ===
+  // === FILTER MODAL ===
+  const filterModal = document.querySelector('#filterModal');
+  const openFilterBtn = document.querySelector('#openFilterBtn');
+  const closeFilterBtn = document.querySelector('#closeFilterBtn');
+  const moodSelect = document.querySelector('#moodSelect');
+  const dateFrom = document.querySelector('#dateFrom');
+  const dateTo = document.querySelector('#dateTo');
+  const applyFilterBtn = filterModal.querySelector('.button:not(.button--secondary)');
+
+  // OPEN MODAL
+  openFilterBtn.addEventListener('click', () => {
+    filterModal.classList.remove('hidden');
+  });
+
+  // CLOSE MODAL
+  closeFilterBtn.addEventListener('click', () => {
+    filterModal.classList.add('hidden');
+  });
+
+  // === REFLECTIONS ===
   const savedReflections = JSON.parse(localStorage.getItem('reflections')) || [];
 
-  reflectionsList.innerHTML = '';
-  savedReflections.forEach(ref => renderReflection(ref, reflectionsList));
+  function renderReflections(refs) {
+    reflectionsList.innerHTML = '';
+    if (refs.length === 0) {
+      reflectionsList.innerHTML = `<li class="reflection-card"><p>No reflections found.</p></li>`;
+      return;
+    }
+    refs.forEach(ref => renderReflection(ref, reflectionsList));
+  }
 
+  renderReflections(savedReflections);
+
+  // === ФИЛЬТРАЦИЯ ===
+  applyFilterBtn.addEventListener('click', () => {
+    const moodValue = moodSelect.value;
+    const from = dateFrom.value ? new Date(dateFrom.value).getTime() : null;
+    const to = dateTo.value ? new Date(dateTo.value).getTime() + 24*60*60*1000 : null;
+
+    const filtered = savedReflections.filter(ref => {
+      const moodMatch = moodValue === 'all' || ref.userMood === moodValue;
+      const dateMs = ref.ts || new Date(ref.dateOfReflection).getTime();
+      const dateMatch = (!from || dateMs >= from) && (!to || dateMs <= to);
+      return moodMatch && dateMatch;
+    });
+
+    renderReflections(filtered);
+    filterModal.classList.add('hidden');
+  });
 
     })

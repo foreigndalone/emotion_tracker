@@ -140,7 +140,7 @@ body {
 .modal__content {
   background: #fff;
   border-radius: 1.2vw;
-  padding: 3vw;
+  padding: 2vw;
   width: 30vw;
   box-shadow: 0 0 2vw rgba(0, 0, 0, 0.2);
   display: flex;

@@ -119,4 +119,31 @@ document.addEventListener("DOMContentLoaded", ()=>{
         moodSelect.value = 'neutral';
     })
 
+
+    // THROWING REFLECTION MODAL BY TIME USER SET//
+      // === AUTO OPEN REFLECTION MODAL BY REMINDER ===
+    const reminders = JSON.parse(localStorage.getItem('reminderTimes')) || [];
+
+    // функция для получения текущего времени в формате HH:MM
+    function getCurrentTime() {
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2, '0');
+        const mm = String(now.getMinutes()).padStart(2, '0');
+        return `${hh}:${mm}`;
+    }
+
+    // чтобы не показывать окно несколько раз в одну минуту
+    let lastOpenedAt = null;
+
+    function checkReminders() {
+        const current = getCurrentTime();
+        if (reminders.includes(current) && lastOpenedAt !== current) {
+        reflectionModal.classList.remove('hidden');
+        lastOpenedAt = current;
+        }
+    }
+
+    // проверяем каждую минуту
+    checkReminders();
+    setInterval(checkReminders, 60 * 1000);
 })
