@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
       userAge.value = localStorage.getItem('age');
     }
 
+
     button.addEventListener('click', function (event) {
       event.preventDefault();
 
@@ -26,8 +27,22 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
+
       localStorage.setItem('name', name);
       localStorage.setItem('age', age);
+
+      //SENDING DATA TO SERVER//
+      const user = {
+        userName: localStorage.getItem('name'),
+        userAge: localStorage.getItem('age')
+      };
+
+      fetch('http://127.0.0.1:5000/add_user_info', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+      })
+
       window.location.href = 'welcome_step2.html';
     });
   }
@@ -51,6 +66,17 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       localStorage.setItem('goal', userGoal);
+      
+      //SENDING DATA TO SERVER//
+      const goal = {
+        userGoal: localStorage.getItem('goal'),
+      };
+
+      fetch('http://127.0.0.1:5000/add_user_goal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(goal)
+      })
       window.location.href = 'welcome_step3.html';
     });
   }
@@ -175,6 +201,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // сохраняем последнее выбранное время (для удобства)
     const lastTime = reminders[reminders.length - 1];
     localStorage.setItem('reminderTime', lastTime);
+
+    //SENDING DATA TO SERVER//
+    fetch('http://127.0.0.1:5000/add_user_reminders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reminders)
+      })
+
     window.location.href = 'welcome_step4.html';
   });
 }
