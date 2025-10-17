@@ -4,13 +4,19 @@ document.addEventListener('DOMContentLoaded', function () {
   // === STEP 1 ===
   if (path.includes('welcome_step1.html')) {
     const userName = document.querySelector('#userName');
+    const userPassword = document.querySelector('#userPassword')
     const userAge = document.querySelector('#userAge');
     const button = document.querySelector('#js-button');
 
-    // если данные уже есть — вставляем их
+    // IF WE ALREADY HAVE DATA
     if (localStorage.getItem('name') !== null) {
       userName.value = localStorage.getItem('name');
     }
+
+    if (localStorage.getItem('password') !== null) {
+      userPassword.value = localStorage.getItem('password');
+    }
+    
     if (localStorage.getItem('age') !== null) {
       userAge.value = localStorage.getItem('age');
     }
@@ -20,30 +26,46 @@ document.addEventListener('DOMContentLoaded', function () {
       event.preventDefault();
 
       const name = userName.value.trim();
+      const password = userPassword.value.trim();
       const age = userAge.value.trim();
 
-      if (!name || !age) {
+      if (!name || !age || !password) {
         alert('Please fill your personal info to continue');
         return;
       }
 
 
       localStorage.setItem('name', name);
+      localStorage.setItem('password', password)
       localStorage.setItem('age', age);
 
       //SENDING DATA TO SERVER//
       const user = {
         userName: localStorage.getItem('name'),
+        userPassword: localStorage.getItem('password'),
         userAge: localStorage.getItem('age')
       };
 
-      fetch('http://127.0.0.1:5000/add_user_info', {
+      fetch('http://127.0.0.1:5050/add_user_info', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
       })
-
-      window.location.href = 'welcome_step2.html';
+      .then(response => response.json())  // 👈 сначала преобразуем ответ в JSON
+        .then(data => {
+          console.log('Server response:', data); // теперь ты увидишь строку "Name Error!" или "Recieved user..."
+          
+          if (data === "Name Error!") {
+            alert("❌ That name already exists. Please choose another one.");
+          } else {
+            const userId = data;
+            localStorage.setItem('userId', userId);
+            window.location.href = "welcome_step2.html";
+          }
+        })
+        .catch(error => {
+          console.error("Fetch error:", error);
+        });
     });
   }
 
@@ -52,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const button = document.querySelector('#js-button');
     const select = document.querySelector('#userReason');
 
-    // если пользователь уже выбирал — восстановим
+    // IF WE ALREADY HAVE DATA
     if (localStorage.getItem('goal')) {
       select.value = localStorage.getItem('goal');
     }
@@ -92,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const reminderBox = document.querySelector('#savedReminders');
   const reminderList = document.querySelector('#reminderList');
 
-  // === функция подсветки центра ===
+  // === TO GLOW THE TiME PICKER ===
   function attachScroll(list, key) {
     const spans = list.querySelectorAll('span');
     const itemHeight = spans[0].offsetHeight;
@@ -119,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    // обработчик скролла
+    // SCROLL HANDLER
     let timeout;
     list.addEventListener('scroll', () => {
       clearTimeout(timeout);
@@ -128,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 100);
     });
 
-    // начальное состояние — подсвечиваем первый элемент
+    // PRIOR CONDITION
     list.scrollTop = 0;
     setTimeout(highlightCenter, 50);
   }
@@ -136,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
   attachScroll(hoursList, 'reminderHour');
   attachScroll(minutesList, 'reminderMinute');
 
-  // === сохранённые напоминания ===
+  // === SAVED REMINDERS ===
   let reminders = JSON.parse(localStorage.getItem('reminderTimes')) || [];
 
   function renderReminders() {

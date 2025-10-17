@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
 
-    // === при загрузке показываем старые ===
+    // === LOADING PREVIOUS REFLECTIONS ===
     const savedReflections = JSON.parse(localStorage.getItem('reflections')) || [];
     reflectionsList.innerHTML = '';
     savedReflections.slice(0, 2).forEach(ref => renderReflection(ref, reflectionsList));
@@ -82,18 +82,32 @@ document.addEventListener("DOMContentLoaded", ()=>{
             return;
         }
 
+        // SENDING REFLECTION TO SERVER
+        const userId = localStorage.getItem('userId')
+        
         const reflection = {
+            userId: userId,
             userText: text || '',
-            userMood: mood || 'neutral',
-            dateOfReflection: new Date().toLocaleString(),
-            ts: Date.now()
+            userMood: mood,
+            dateOfReflection: new Date().toLocaleString()
         };
 
+        fetch('http://127.0.0.1:5050/add_reflection', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(reflection)
+        })
+
+        
+        
+        
+        //SAVING TO LOCAL SERVER
         const reflections = JSON.parse(localStorage.getItem('reflections')) || [];
         reflections.unshift(reflection);
 
         // saving updated list
         localStorage.setItem('reflections', JSON.stringify(reflections));
+
 
         // отрисовываем заново (новая — сверху)
         reflectionsList.innerHTML = '';

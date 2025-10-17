@@ -7,10 +7,20 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app)
-
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 import psycopg2
 from db_controller import DBController
+
+
+# UNIVERSAL REQUEST HANDLER
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,OPTIONS')
+    return response
+
+
 
 connection = psycopg2.connect(
             dbname="emotion_tracker", 
@@ -21,30 +31,46 @@ connection = psycopg2.connect(
 
 db_controller = DBController(connection=connection)
 
+@app.route("/")
+def home():
+    return "✅ Flask server is running!"
+
 
 # RECIEVING USER'S NAME AND AGE
-@app.route("/add_user_info", methods=["POST"])
+@app.route("/add_user_info", methods=["POST", "OPTIONS"])
 def addUserInfo():
+    if request.method == "OPTIONS":
+        # Браузер делает preflight — просто отвечаем "ок"
+        return ("", 204)
+
     if not request.is_json:
         abort(400, description="Request must be JSON with Content‑Type: application/json")
 
     payload = request.get_json(silent=True) or {}
     age = payload.get("userAge")
     name = payload.get("userName")
+    password = payload.get("userPassword")
 
-    if not age or not name:
+    if not age or not name or not password:
         abort(400, description="Field 'choice' is required")
 
-    db_controller.add(name, age)
+    id = db_controller.add(name, age, password)
 
-    print(f"Name: {name} | Age: {age}")
+    print(f"Name: {name} | ID: {id[0][0]} | Password: {password} Age: {age}")
 
-    response_data = "Recieved user's name and age!"
-
-    return Response(
-        json.dumps(response_data, ensure_ascii=False),
-        content_type="application/json"
-    ), 200
+    if id:
+            response_data = id[0][0]
+            return Response(
+                json.dumps(response_data, ensure_ascii=False),
+                content_type="application/json"
+            ), 200
+    else:
+        print('Name Error!')
+        response_data = "Name Error!"
+        return Response(
+            json.dumps(response_data, ensure_ascii=False),
+            content_type="application/json"
+            ), 200
 
 
 # RECIEVING USER'S GOAL 
@@ -91,8 +117,44 @@ def addUserReminderTime():
 
 
 
+# RECIEVING USER'S REFLECTIONS
+@app.route("/add_reflection", methods=["POST"])
+def addReflection():
+    if not request.is_json:
+        abort(400, description="Request must be JSON with Content‑Type: application/json")
+
+    payload = request.get_json(silent=True) or {}
+    print(payload)
+    user_id = payload.get("userId")
+    text = payload.get('userText')
+    mood = payload.get('userMood')
+    dateOfReflection = payload.get('dateOfReflection')
+
+    if not user_id or not text or not mood:
+        abort(400, description="Field 'choice' is required")
+
+    db_controller.add_reflection_db(user_id, mood, text)
+
+    print(f"Reflection added for user {user_id}: {text} ({mood}) {dateOfReflection}")
+
+    response_data =  "Reflection saved successfully"
+
+    return Response(
+        json.dumps(response_data, ensure_ascii=False),
+        content_type="application/json"
+    ), 200
+
+
+
+# GET ALL REFLECTIONS OF USER
+@app.route("/get_reflections/<int:user_id>", methods=["GET"])
+def getReflections(user_id):
+    reflections = db_controller.get_reflections_db(user_id)
+    return jsonify(reflections), 200
+
 
 # ENTRY‑POINT
 if __name__ == "__main__":
-    PORT = int(os.getenv("PORT", 5000))
+    PORT = int(os.getenv("PORT", 5050))
     app.run(host="127.0.0.1", port=PORT, debug=False)
+

@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderReflections(savedReflections);
 
-  // === ФИЛЬТРАЦИЯ ===
+  // === FILTERING ===
   applyFilterBtn.addEventListener('click', () => {
     const moodValue = moodSelect.value;
     const from = dateFrom.value ? new Date(dateFrom.value).getTime() : null;
