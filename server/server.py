@@ -73,6 +73,48 @@ def addUserInfo():
             ), 200
 
 
+
+# PASSWORD 
+@app.route("/login_user", methods=["POST", "OPTIONS"])
+def passwordHandler():
+    if request.method == "OPTIONS":
+    # Браузер делает preflight — просто отвечаем "ок"
+        return ("", 204)
+    if not request.is_json:
+        abort(400, description="Request must be JSON with Content‑Type: application/json")
+    payload = request.get_json(silent=True) or {}
+    name = payload.get("userName")
+    password = payload.get("userPassword")
+
+    if not name or not password:
+        abort(400, description="Field 'choice' is required")
+
+    print(f"Name: {name} | Password: {password}")
+
+    id = db_controller.password_handler_db(name, password)
+    print(id)
+
+    if id:
+            response_data = id
+            return Response(
+                json.dumps(response_data, ensure_ascii=False),
+                content_type="application/json"
+            ), 200
+    else:
+        print('Name Error!')
+        response_data = "Name Error!"
+        return Response(
+            json.dumps(response_data, ensure_ascii=False),
+            content_type="application/json"
+            ), 200
+
+
+
+
+
+
+
+
 # RECIEVING USER'S GOAL 
 @app.route("/add_user_goal", methods=["POST"])
 def addUserGoal():
@@ -143,6 +185,8 @@ def addReflection():
         json.dumps(response_data, ensure_ascii=False),
         content_type="application/json"
     ), 200
+
+
 
 
 

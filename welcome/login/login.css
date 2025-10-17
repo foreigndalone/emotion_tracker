@@ -1,0 +1,108 @@
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === BASE LAYOUT === */
+body {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  margin-left: 52vw;
+  margin-top: 6vw;
+  gap: 3vw;
+  font-family: 'Inter', sans-serif;
+  color: #222;
+  background-color: #fff;
+}
+
+/* === HEADINGS === */
+main h1 {
+  font-size: 3vw;
+  line-height: 3.5vw;
+  margin-bottom: 2vw;
+}
+
+/* === FORM CONTAINER === */
+.welcome-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8vw; /* чуть больше воздуха между элементами */
+  width: 40vw;
+  background: #ffffff;
+  border-radius: 1.5vw;
+  box-shadow: 0 0 2vw rgba(0, 0, 0, 0.05);
+  padding: 3vw;
+}
+
+/* === INPUTS === */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 1vw 1vw;
+  border-radius: 0.6vw;
+  border: 0.1vw solid #ccc;
+  font-size: 1vw;
+  color: #222;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #8b8cff;
+  box-shadow: 0 0 0.4vw rgba(139, 140, 255, 0.4);
+}
+
+/* === SIGN UP TEXT === */
+.small-text {
+  /* order: -1; перемещаем над кнопкой */
+  text-align: left;
+  font-size: 1vw;
+  color: #666;
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
+}
+
+.small-text a {
+  color: #8b8cff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.small-text a:hover {
+  text-decoration: underline;
+  color: #6b6cff;
+}
+
+/* === BUTTON === */
+button {
+  align-self: center;
+  width: 50%;
+  padding: 1vw 0;
+  border: 0.15vw solid #ccc;
+  border-radius: 1vw;
+  background: #ffffff;
+  color: inherit;
+  font-size: 1.1vw;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 0.3vw 0.8vw rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: #f4f4ff;
+  border-color: #bbb;
+  box-shadow: 0 0.4vw 1vw rgba(0, 0, 0, 0.1);
+  transform: translateY(-0.1vw);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.05);
+}

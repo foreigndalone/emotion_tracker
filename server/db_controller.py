@@ -7,7 +7,9 @@ class DBController:
         
         # USERNAME HANDLER
         self.userNameHandler = "SELECT user_name FROM users WHERE user_name = %s;"
-        self.userIdHandler = "SELECT id FROM users WHERE user_name = %s"
+        self.userIdHandler = "SELECT id FROM users WHERE user_name = %s;"
+
+        self.userPasswordHadler = "SELECT id, user_password FROM users WHERE user_name = %s;"
 
         # REFLECTIONS
         self.add_reflection = """
@@ -42,9 +44,25 @@ class DBController:
             cursor.execute(self.get_userInfo, input_values)
             userInfo = cursor.fetchall()
             return userInfo
-        
-    
 
+
+# PASSWORD HANDLER
+    def password_handler_db(self, name, password):
+        with self.connection.cursor() as cursor:
+            print(name, password)
+            cursor.execute(self.userPasswordHadler, (name,))
+            row = cursor.fetchone()  # берем одну строку
+            if row:
+                user_id, db_password = row
+                if db_password == password:
+                    return user_id
+                else:
+                    return False
+            else:
+                return False
+
+    
+    
         #ADD / GET REFLECTION
     def add_reflection_db(self, user_id, mood, text):
         with self.connection.cursor() as cursor:

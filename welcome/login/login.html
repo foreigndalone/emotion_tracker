@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css" /> <!-- ссылка на общий CSS -->
+</head>
+<body>
+  <main class="welcome-container">
+    <h1>Welcome Back 👋</h1>
+    <form id="loginForm" class="welcome-form">
+      <input type="text" id="userName" placeholder="Your Name" required />
+      <input type="password" id="userPassword" placeholder="Password" required />
+      <p class="small-text">
+        Don’t have an account? <a href="../welcome_step1.html">Sign up</a>
+      </p>
+      <button type="submit" id="js-button">Log In</button>
+    </form>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>
