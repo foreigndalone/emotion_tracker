@@ -106,3 +106,132 @@ button:active {
   transform: translateY(0);
   box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.05);
 }
+
+
+
+@media (max-width: 768px) {
+
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* 🔒 запрещаем горизонтальный скролл */
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+    font-family: "Inter", sans-serif;
+    color: #222;
+  }
+
+  /* === MAIN CONTAINER === */
+  .welcome-container {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 6vw;
+    gap: 8vw;
+  }
+
+  .welcome-container h1 {
+    font-size: 6vw;
+    line-height: 7vw;
+    font-weight: 600;
+    color: #111;
+  }
+
+  /* === FORM === */
+  .welcome-form {
+    width: 100%;
+    max-width: 90vw;
+    padding: 6vw 5vw;
+    border-radius: 4vw;
+    background: #fff;
+    box-shadow: 0 0 5vw rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 6vw;
+    box-sizing: border-box; /* 🧩 предотвращает переполнение */
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    font-size: 3.4vw;
+    padding: 3.2vw 3.4vw;
+    border-radius: 2.8vw;
+    border: 0.25vw solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.02);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    box-sizing: border-box;
+  }
+
+  input:focus {
+    border-color: #8b8cff;
+    box-shadow: 0 0 2vw rgba(139, 140, 255, 0.25);
+    outline: none;
+  }
+
+  ::placeholder {
+    font-size: 3.2vw;
+    color: #aaa;
+  }
+
+  /* === SIGN-UP TEXT === */
+  .small-text {
+    text-align: center;
+    font-size: 3.3vw;
+    color: #666;
+    margin-top: 2vw;
+  }
+
+  .small-text a {
+    color: #8b8cff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.25s;
+  }
+
+  .small-text a:hover {
+    text-decoration: underline;
+    color: #6b6cff;
+  }
+
+  /* === BUTTON === */
+  button {
+    display: block;
+    width: 70%;
+    max-width: 320px;
+    padding: 3.5vw 0;
+    border-radius: 3.2vw;
+    font-size: 3.8vw;
+    font-weight: 600;
+    background: #ffffff;
+    border: 0.3vw solid #ccc;
+    box-shadow: 0 0.8vw 1.8vw rgba(0, 0, 0, 0.08);
+    color: #222;
+    letter-spacing: 0.02em;
+    transition: all 0.25s ease;
+    margin: 0 auto;
+  }
+
+  button:hover {
+    background: #f4f4ff;
+    border-color: #aaa;
+    transform: translateY(-0.4vw);
+    box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.1);
+  }
+
+  button:active {
+    transform: translateY(0);
+    box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.05);
+  }
+}
