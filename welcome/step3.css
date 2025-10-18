@@ -234,3 +234,207 @@ footer button:active {
   padding-top: 4vw;  /* буфер сверху */
   padding-bottom: 4vw; /* буфер снизу */
 }
+
+
+
+
+
+
+
+
+
+/* ===== MODERN MOBILE ADAPTATION FOR STEP 3 (COMPACT / NO SCROLL) ===== */
+@media (max-width: 768px) {
+
+  body {
+    width: 92vw;
+    margin: 0 auto;
+    margin-top: 6vw;
+    gap: 5vw;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui, sans-serif;
+    background: #fff;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 4vw;
+    width: 90%;
+  }
+
+  header h1 {
+    font-size: 6vw;
+    line-height: 7vw;
+    font-weight: 600;
+    margin-bottom: 2vw;
+  }
+
+  header h2 {
+    font-size: 4vw;
+    line-height: 5.5vw;
+    font-weight: 400;
+    color: #333;
+    opacity: 0.85;
+    margin: 0 auto;
+    width: 88%;
+  }
+
+  header p {
+    font-size: 3.3vw;
+    line-height: 4.5vw;
+    color: #666;
+    margin-top: 2vw;
+  }
+
+  .form_container {
+    width: 90vw;
+    padding: 4.5vw 4vw;
+    border-radius: 3vw;
+    box-shadow: 0 0 3vw rgba(0, 0, 0, 0.04);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 4vw;
+    align-items: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 4vw;
+    width: 100%;
+  }
+
+  .time-picker {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5vw;
+    width: 100%;
+  }
+
+  .picker label {
+    font-size: 3.5vw;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 2vw;
+  }
+
+  .scroll-list {
+    height: 32vw; /* компактно, но читаемо */
+    border-radius: 2vw;
+    border: 0.3vw solid #ddd;
+    background: #fafafa;
+    padding-top: 20vw;     /* ⬅️ добавили больше воздуха сверху */
+    padding-bottom: 20vw;  /* ⬅️ и снизу тоже */
+    box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.02);
+  }
+
+  .scroll-list span {
+    height: 5.5vw;
+    line-height: 5.5vw;
+    font-size: 3.8vw;
+  }
+
+  .scroll-list span.selected {
+    background: rgba(139, 140, 255, 0.18);
+    color: #3b3cff;
+    font-weight: 600;
+    border-radius: 1.5vw;
+    box-shadow: 0 0 0.8vw rgba(139, 140, 255, 0.25);
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 5vw;
+    margin-top: 8vw;   /* ⬅️ увеличено: было 4vw → теперь 8vw */
+  }
+
+  .save-btn,
+  .cancel-btn {
+    font-size: 3.5vw;
+    padding: 2vw 4vw;
+    border-radius: 2.5vw;
+    border: 0.25vw solid #ccc;
+    background: #fff;
+    color: #222;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 0.4vw 1vw rgba(0, 0, 0, 0.04);
+  }
+
+  .save-btn:hover {
+    background: #f4f4ff;
+    border-color: #8b8cff;
+  }
+
+  .cancel-btn:hover {
+    background: #f8f8f8;
+    border-color: #bbb;
+  }
+
+  #savedReminders {
+    margin-top: 5vw;
+    border-top: 0.2vw solid #eee;
+    padding-top: 2.5vw;
+    text-align: center;
+  }
+
+  #savedReminders h3 {
+    font-size: 3.8vw;
+    font-weight: 600;
+    margin-bottom: 2vw;
+  }
+
+  #reminderList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5vw;
+  }
+
+  .reminder-item {
+    background: rgba(139, 140, 255, 0.15);
+    border: 0.2vw solid #8b8cff;
+    border-radius: 2vw;
+    padding: 0.8vw 1.8vw;
+    font-size: 3.2vw;
+    color: #3b3cff;
+    display: flex;
+    align-items: center;
+    gap: 1.5vw;
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 6vw;
+  }
+
+  footer button {
+    display: block;
+    width: 68vw;
+    padding: 3vw 0;
+    border-radius: 3vw;
+    font-size: 3.6vw;
+    font-weight: 600;
+    background: #ffffff;
+    border: 0.25vw solid #ccc;
+    box-shadow: 0 0.6vw 1.5vw rgba(0, 0, 0, 0.06);
+    color: #222;
+    letter-spacing: 0.02em;
+    transition: all 0.25s ease;
+    margin: 0 auto;
+    align-self: center;
+    margin-bottom: 10vw;
+  }
+
+  footer button:hover {
+    background: #f4f4ff;
+    border-color: #aaa;
+    transform: translateY(-0.3vw);
+    box-shadow: 0 0.8vw 1.6vw rgba(0, 0, 0, 0.1);
+  }
+}

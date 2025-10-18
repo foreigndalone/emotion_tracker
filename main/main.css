@@ -260,3 +260,210 @@ body {
 .js-delete:hover img {
   opacity: 1;
 }
+
+
+
+
+
+
+/* ===== MOBILE / TABLET ADAPTATION (v2 — airy & hierarchical) ===== */
+@media (max-width: 768px) {
+
+  body {
+    padding-top: 6vw;
+    gap: 12vw;
+    background: #fafafa;
+  }
+
+  /* === NAVIGATION === */
+  .nav__list {
+    flex-wrap: wrap;
+    gap: 5vw;
+  }
+
+  .nav__link {
+    font-size: 3.4vw; /* ⬅️ чуть меньше */
+    color: #555;
+    font-weight: 400;
+  }
+
+  .nav__link.active {
+    color: #000;
+    font-weight: 600;
+  }
+
+  /* === MAIN SECTION === */
+  .main {
+    width: 90vw;
+    gap: 10vw; /* больше воздуха между intro и reflections */
+    text-align: center;
+  }
+
+  .intro__title {
+    font-size: 6.2vw;
+    line-height: 7.4vw;
+    font-weight: 700;
+    margin-bottom: 2vw;
+    color: #111;
+  }
+
+  .intro__subtitle {
+    font-size: 3.8vw;
+    line-height: 5.4vw;
+    opacity: 0.8;
+    color: #333;
+    font-weight: 400;
+  }
+
+  .button {
+    width: 62vw;              /* чуть меньше */
+    padding: 3vw 0;
+    font-size: 3.6vw;
+    font-weight: 600;
+    border-radius: 3vw;
+    border: 0.4vw solid #ddd;
+    box-shadow: 0 0.8vw 1.8vw rgba(0, 0, 0, 0.06);
+    background: #fff;
+    margin: 3vw auto 0;
+    margin-top: 8vw;
+  }
+
+  .button:hover {
+    background: #f4f4ff;
+  }
+
+  .button--secondary {
+    background: #fafafa;
+  }
+
+  /* === REFLECTIONS SECTION === */
+  .reflections {
+    width: 92vw;
+    margin-top: 4vw;   /* чуть меньше чем было */
+    gap: 5vw;
+  }
+
+  .reflections__title {
+    font-size: 5.4vw; /* больше, чтобы появилась иерархия */
+    font-weight: 700;
+    margin-bottom: 2.5vw;
+    color: #111;
+  }
+
+  .reflections__list {
+    gap: 4.5vw;
+  }
+
+  .reflection-card {
+    padding: 4.5vw;
+    border-radius: 3.5vw;
+    box-shadow: 0 0 2vw rgba(0, 0, 0, 0.05);
+  }
+
+  .reflection-card__title {
+    font-size: 4.4vw; /* усиливаем визуальную иерархию внутри карточек */
+    margin-bottom: 2vw;
+    font-weight: 700;
+    color: #222;
+  }
+
+  .reflection-card__text {
+    font-size: 3.5vw;
+    line-height: 5vw;
+    color: #333;
+    font-weight: 400;
+  }
+
+  .reflection-card__date {
+    font-size: 2.8vw;
+    margin-top: 2vw;
+    color: #666;
+  }
+
+  .js-delete {
+    width: 7vw;
+    height: 7vw;
+    left: 90%;
+    border: 0.3vw solid #ddd;
+  }
+
+  .js-delete img {
+    width: 2.8vw;
+    height: 2.8vw;
+  }
+
+  /* === clean responsive mobile adaptation === */
+
+  .reflection-card {
+    padding: 5vw;
+    border-radius: 4vw;
+    box-shadow: 0 0 3vw rgba(0, 0, 0, 0.05);
+    margin-bottom: 5vw;
+  }
+
+  .reflection-card__emoji {
+    font-size: 4.5vw;
+  }
+
+  .reflection-card__date {
+    font-size: 3.2vw;
+    color: #888;
+  }
+
+  .reflection-card__text {
+    font-size: 3.8vw;
+    line-height: 5.4vw;
+    margin-top: 2vw;
+  }
+}
+
+  /* === FOOTER === */
+  .footer {
+    margin-top: 10vw;
+    font-size: 3vw;
+    color: #777;
+    text-align: center;
+  }
+
+  /* === MODAL === */
+  .modal__content {
+    width: 85vw;
+    padding: 6vw;
+    border-radius: 4vw;
+    gap: 4vw;
+  }
+
+  .modal__title {
+    font-size: 5.2vw;
+    font-weight: 600;
+  }
+
+  .modal__subtitle {
+    font-size: 3.6vw;
+    color: #555;
+  }
+
+  .modal__textarea {
+    height: 28vw;
+    font-size: 3.4vw;
+    padding: 3vw;
+    border-radius: 2.5vw;
+    margin-bottom: 4vw;
+  }
+
+  .modal__select {
+    font-size: 3.4vw;
+    padding: 3vw;
+    border-radius: 2.5vw;
+  }
+
+  .modal__actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0vw;
+    margin-top: 4vw;
+  }
+
+  .modal__actions .button {
+    width: 70vw;
+  }

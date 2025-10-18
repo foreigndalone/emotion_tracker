@@ -293,3 +293,184 @@ input[type="date"] {
 .js-delete:hover img {
   opacity: 1;
 }
+
+
+
+
+/* ===== MOBILE / TABLET ADAPTATION (modern airy design) ===== */
+@media (max-width: 768px) {
+
+  body {
+    padding-top: 6vw;
+    gap: 10vw;
+    background: #fafafa;
+  }
+
+  /* === NAVIGATION === */
+  .nav__list {
+    flex-wrap: wrap;
+    gap: 5vw;
+  }
+
+  .nav__link {
+    font-size: 3.4vw;
+    color: #555;
+  }
+
+  .nav__link.active {
+    color: #000;
+    font-weight: 600;
+  }
+
+  /* === MAIN === */
+  .main {
+    width: 90vw;
+    gap: 8vw;
+    text-align: center;
+  }
+
+  .intro__title {
+    font-size: 6.5vw;
+    line-height: 7.5vw;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .intro__subtitle {
+    font-size: 3.8vw;
+    line-height: 5.5vw;
+    color: #444;
+    opacity: 0.9;
+  }
+
+  /* === REFLECTIONS === */
+  .reflections {
+    width: 92vw;
+    gap: 6vw;
+    margin-top: 4vw;
+  }
+
+  .reflections__header {
+    flex-direction: column;
+    align-items: center;
+    gap: 4vw;
+  }
+
+  .reflections__title {
+    font-size: 5vw;
+    font-weight: 600;
+    color: #111;
+  }
+
+  .reflections__search {
+    width: 100%;
+    justify-content: center;
+    gap: 3vw;
+  }
+
+  .reflections__input {
+    width: 70%;
+    font-size: 3.5vw;
+    padding: 3vw 3.5vw;
+    border-radius: 3vw;
+    border: 0.3vw solid #ddd;
+  }
+
+  .reflections__filter-btn img {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .reflections__list {
+    gap: 5vw;
+  }
+
+  .reflection-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 5vw;
+    border-radius: 4vw;
+  }
+
+ .reflection-card__content {
+    width: 80%;
+  }
+
+  .reflection-card__emoji {
+    font-size: 4.5vw;
+  }
+
+  .reflection-card__date {
+    font-size: 3.2vw;
+    margin-top: 1vw;
+  }
+
+  .reflection-card__text {
+    font-size: 3.8vw;
+    line-height: 5.4vw;
+    margin-top: 2vw;
+  }
+
+  .js-delete {
+    width: 7vw;
+    height: 7vw;
+    opacity: 1;
+    border: 0.3vw solid #ddd;
+  }
+
+  .js-delete img {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  /* === MODAL === */
+  .modal__content {
+    width: 85vw;
+    padding: 6vw;
+    border-radius: 4vw;
+    gap: 5vw;
+  }
+
+  .modal__title {
+    font-size: 5.5vw;
+    font-weight: 600;
+  }
+
+  .modal__group label {
+    font-size: 3.6vw;
+  }
+
+  .modal__select,
+  input[type="date"] {
+    font-size: 3.4vw;
+    padding: 3vw;
+    border-radius: 3vw;
+    border: 0.3vw solid #ddd;
+  }
+
+  .modal__dates {
+    flex-direction: column;
+    gap: 4vw;
+  }
+
+  .modal__actions {
+    flex-direction: column;
+    gap: 4vw;
+    align-items: center;
+    margin-top: 8vw;
+  }
+
+  .button {
+    width: 70vw;
+    padding: 3.5vw 0;
+    font-size: 4vw;
+    font-weight: 600;
+    border-radius: 3vw;
+    border: 0.3vw solid #ddd;
+    box-shadow: 0 0.8vw 1.8vw rgba(0, 0, 0, 0.08);
+  }
+
+  .button--secondary {
+    background: #fafafa;
+  }
+}

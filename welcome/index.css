@@ -265,3 +265,168 @@ select:focus {
   box-shadow: 0 0.4vw 1vw rgba(0, 0, 0, 0.1);
   transform: translateY(-0.1vw);
 }
+
+
+
+/* MOBILE / IPAD */
+
+/* ===== MODERN MOBILE ADAPTATION (CLEAN, SPACIOUS, MINIMAL) ===== */
+@media (max-width: 768px) {
+
+  body {
+    width: 92vw;
+    margin: 0 auto;
+    margin-top: 10vw;
+    gap: 8vw;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 6vw;
+  }
+
+  header h1 {
+    font-size: 6.5vw;
+    line-height: 7.5vw;
+    font-weight: 600;
+    margin-bottom: 3vw;
+  }
+
+  header > h2 {
+    font-size: 4.5vw;
+    line-height: 6vw;
+    font-weight: 400;
+    color: #333;
+    opacity: 0.85;
+    margin: 0 auto;
+    width: 85%;
+  }
+
+  .form_container {
+    width: 90vw;
+    padding: 6vw 5vw;
+    border-radius: 4vw;
+    box-shadow: 0 0 5vw rgba(0, 0, 0, 0.05);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 6vw;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 4.5vw;
+  }
+
+  label {
+    font-size: 3.8vw;
+    font-weight: 500;
+    margin-bottom: 1vw;
+    color: #222;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="password"],
+  select {
+    width: 100%;
+    font-size: 3.5vw;
+    padding: 3.5vw 3.8vw;
+    border-radius: 3vw;
+    border: 0.2vw solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.02);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  input:focus,
+  select:focus {
+    border-color: #8b8cff;
+    box-shadow: 0 0 2vw rgba(139, 140, 255, 0.25);
+    outline: none;
+  }
+
+  #consent {
+    width: 5vw;
+    height: 5vw;
+    margin-right: 2vw;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4vw;
+    margin-top: 0vw;
+  }
+
+  footer p {
+    font-size: 3.8vw;
+    line-height: 5vw;
+    text-align: center;
+    color: #444;
+    width: 85%;
+    margin-bottom: 4vw;
+  }
+
+  button,
+  .last_button {
+    display: block;
+    width: 70vw;
+    padding: 3.5vw 0;
+    border-radius: 3.5vw;
+    font-size: 4vw;
+    font-weight: 600;
+    background: #ffffff;
+    border: 0.3vw solid #ccc;
+    box-shadow: 0 0.8vw 1.8vw rgba(0, 0, 0, 0.08);
+    color: #222;
+    letter-spacing: 0.02em;
+    transition: all 0.25s ease;
+    margin: 0 auto;           /* ⬅️ центрируем по горизонтали */
+    align-self: center;       /* ⬅️ гарантирует центр даже при flex */
+  }
+
+  button:hover,
+  .last_button:hover {
+    background: #f4f4ff;
+    border-color: #aaa;
+    transform: translateY(-0.4vw);
+    box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.1);
+  }
+
+  /* === Step 4 (Final Page) === */
+  .page--final {
+    width: 92vw;
+    margin: 0 auto;
+    margin-top: 18vw;
+    gap: 12vw;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .final__main h1 {
+    font-size: 7vw;
+    line-height: 8vw;
+    font-weight: 600;
+  }
+
+  .final__main h2 {
+    margin-top: 6vw;
+    font-size: 4.8vw;
+    line-height: 6.5vw;
+    color: #333;
+    opacity: 0.85;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .final__footer {
+    display: flex;
+    justify-content: center;
+  }
+}
