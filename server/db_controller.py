@@ -32,7 +32,7 @@ class DBController:
             if len(userName)== 0:
                 cursor.execute(self.add_userInfo, input_values)
                 cursor.execute(self.userIdHandler, (name,))
-                userId = cursor.fetchall()
+                userId = cursor.fetchone()
                 self.connection.commit()
                 return userId
             else:

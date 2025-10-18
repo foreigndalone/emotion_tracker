@@ -56,10 +56,10 @@ def addUserInfo():
 
     id = db_controller.add(name, age, password)
 
-    print(f"Name: {name} | ID: {id[0][0]} | Password: {password} Age: {age}")
+    print(f"Name: {name} | ID: {id} | Password: {password} Age: {age}")
 
     if id:
-            response_data = id[0][0]
+            response_data = id
             return Response(
                 json.dumps(response_data, ensure_ascii=False),
                 content_type="application/json"
