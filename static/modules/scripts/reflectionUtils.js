@@ -20,7 +20,7 @@ export function renderReflection(reflection, reflectionsList) {
       <p class="reflection-card__date">${reflection.dateOfReflection}</p>
     </div>
     <p class="reflection-card__text">${reflection.userText || '(no text)'}</p>
-    <button class="js-delete"><img src="../items/Delete.svg" alt="Delete reflection"></button>
+    <button class="js-delete"><img src="../../items/Delete.svg" alt="Delete reflection"></button>
   `;
 
   // обработчик удаления
