@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             dateOfReflection: new Date().toLocaleString()
         };
 
-        fetch('http://127.0.0.1:5050/add_reflection', {
+        fetch('http://127.0.0.1:5050/api/add_reflection', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(reflection)

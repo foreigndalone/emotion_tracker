@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         //SENDING DATA TO SERVER//
-        fetch('http://127.0.0.1:5050/login_user', {
+        fetch('http://127.0.0.1:5050/api/login_user', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
@@ -42,4 +42,5 @@ document.addEventListener('DOMContentLoaded', function () {
           console.error("Fetch error:", error);
         });
     })
+    
 })

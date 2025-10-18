@@ -145,8 +145,8 @@ body {
   color: #555;
 }
 /*== FOOTER === */
-.footer {
-  margin-top: 3vw;
+.footer__text {
+  margin-top: 0vw;
   font-size: 1vw;
   color: #777;
 }
@@ -415,7 +415,6 @@ body {
     line-height: 5.4vw;
     margin-top: 2vw;
   }
-}
 
   /* === FOOTER === */
   .footer {
@@ -467,3 +466,7 @@ body {
   .modal__actions .button {
     width: 70vw;
   }
+  
+}
+
+  

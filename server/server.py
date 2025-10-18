@@ -31,13 +31,13 @@ connection = psycopg2.connect(
 
 db_controller = DBController(connection=connection)
 
-@app.route("/")
+@app.route("/api/")
 def home():
     return "✅ Flask server is running!"
 
 
 # RECIEVING USER'S NAME AND AGE
-@app.route("/add_user_info", methods=["POST", "OPTIONS"])
+@app.route("/api/add_user_info", methods=["POST", "OPTIONS"])
 def addUserInfo():
     if request.method == "OPTIONS":
         # Браузер делает preflight — просто отвечаем "ок"
@@ -75,7 +75,7 @@ def addUserInfo():
 
 
 # PASSWORD 
-@app.route("/login_user", methods=["POST", "OPTIONS"])
+@app.route("/api/login_user", methods=["POST", "OPTIONS"])
 def passwordHandler():
     if request.method == "OPTIONS":
     # Браузер делает preflight — просто отвечаем "ок"
@@ -116,7 +116,7 @@ def passwordHandler():
 
 
 # RECIEVING USER'S GOAL 
-@app.route("/add_user_goal", methods=["POST"])
+@app.route("/api/add_user_goal", methods=["POST"])
 def addUserGoal():
     if not request.is_json:
         abort(400, description="Request must be JSON with Content‑Type: application/json")
@@ -138,7 +138,7 @@ def addUserGoal():
 
 
 # RECIEVING USER'S REMINDER'S TIME
-@app.route("/add_user_reminders", methods=["POST"])
+@app.route("/api/add_user_reminders", methods=["POST"])
 def addUserReminderTime():
     if not request.is_json:
         abort(400, description="Request must be JSON with Content‑Type: application/json")
@@ -160,7 +160,7 @@ def addUserReminderTime():
 
 
 # RECIEVING USER'S REFLECTIONS
-@app.route("/add_reflection", methods=["POST"])
+@app.route("/api/add_reflection", methods=["POST"])
 def addReflection():
     if not request.is_json:
         abort(400, description="Request must be JSON with Content‑Type: application/json")
@@ -191,7 +191,7 @@ def addReflection():
 
 
 # GET ALL REFLECTIONS OF USER
-@app.route("/get_reflections/<int:user_id>", methods=["GET"])
+@app.route("/api/get_reflections/<int:user_id>", methods=["GET"])
 def getReflections(user_id):
     reflections = db_controller.get_reflections_db(user_id)
     return jsonify(reflections), 200

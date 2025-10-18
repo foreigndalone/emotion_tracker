@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         userAge: localStorage.getItem('age')
       };
 
-      fetch('http://127.0.0.1:5050/add_user_info', {
+      fetch('http://127.0.0.1:5050/api/add_user_info', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
         userGoal: localStorage.getItem('goal'),
       };
 
-      fetch('http://127.0.0.1:5000/add_user_goal', {
+      fetch('http://127.0.0.1:5000/api/add_user_goal', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(goal)
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.setItem('reminderTime', lastTime);
 
     //SENDING DATA TO SERVER//
-    fetch('http://127.0.0.1:5000/add_user_reminders', {
+    fetch('http://127.0.0.1:5000/api/add_user_reminders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reminders)
