@@ -35,6 +35,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === REFLECTIONS ===
   const savedReflections = JSON.parse(localStorage.getItem('reflections')) || [];
+    
+  const userIdJSON = {
+      userId: localStorage.getItem('userId')
+  }
+  console.log('pipiski')
+  fetch('http://127.0.0.1:5050/api/get_reflections', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userIdJSON)
+  })
+    .then(response => response.json())  // 👈 сначала преобразуем ответ в JSON
+      .then(data => {
+        console.log('Server response:', data); // теперь ты увидишь строку "Name Error!" или "Recieved user..."
+        const db_reflections = data
+        localStorage.setItem('db_reflections',db_reflections)
+      })
+      .catch(error => {
+        console.error("Fetch error:", error);
+      });
+
 
   function renderReflections(refs) {
     reflectionsList.innerHTML = '';
@@ -45,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     refs.forEach(ref => renderReflection(ref, reflectionsList));
   }
 
-  renderReflections(savedReflections);
+  renderReflections(localStorage.getItem('db_reflections'));
 
   // === FILTERING ===
   applyFilterBtn.addEventListener('click', () => {

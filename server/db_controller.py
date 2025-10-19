@@ -22,6 +22,9 @@ class DBController:
             WHERE user_id = %s
             ORDER BY date_time DESC;
         """
+        self.delete_reflection = """
+            DELETE FROM reflections WHERE id = %s AND user_id = %s
+        """
 
         #ADD / GET PERSONAL DATA 
     def add(self, name, age, password):
@@ -73,4 +76,19 @@ class DBController:
     def get_reflections_db(self, user_id):
         with self.connection.cursor() as cursor:
             cursor.execute(self.get_reflections, (user_id,))
-            return cursor.fetchall()
+            rows = cursor.fetchall()
+            reflections = []
+            for row in rows:
+                reflections.append({
+                    "id": row[0],
+                    "userText": row[1],
+                    "userMood": row[2],
+                    "dateOfReflection": str(row[3])
+                })
+            return reflections
+    def delete_reflection_db(self, id, user_id):
+        with self.connection.cursor() as cursor:
+            cursor.execute(self.delete_reflection, (id, user_id))
+            self.connection.commit()
+            return self.get_reflections_db(user_id)
+        

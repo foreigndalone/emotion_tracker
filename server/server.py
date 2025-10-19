@@ -191,9 +191,17 @@ def addReflection():
 
 
 # GET ALL REFLECTIONS OF USER
-@app.route("/api/get_reflections/<int:user_id>", methods=["GET"])
-def getReflections(user_id):
-    reflections = db_controller.get_reflections_db(user_id)
+@app.route("/api/get_reflections", methods=["POST"])
+def getReflections():
+    print('pipiski')
+    if not request.is_json:
+        abort(400, description="Request must be JSON with Content‑Type: application/json")
+
+    payload = request.get_json(silent=True) or {}
+    userId = payload.get('userId')
+    print(userId)
+    reflections = db_controller.get_reflections_db(userId)
+    print(f'{reflections} pipiski nashi')
     return jsonify(reflections), 200
 
 

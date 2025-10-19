@@ -35,7 +35,18 @@ export function renderReflection(reflection, reflectionsList) {
       localStorage.setItem('reflections', JSON.stringify(updated));
       li.remove();
     }
+    if (confirm('Delete this reflection?')) {
+      const saved = JSON.parse(localStorage.getItem('db_reflecctions')) || [];
+      const updated = saved.filter(r =>
+        !(r.userText === reflection.userText &&
+          r.userMood === reflection.userMood &&
+          r.dateOfReflection === reflection.dateOfReflection)
+      );
+      localStorage.setItem('reflections', JSON.stringify(updated));
+      li.remove();
+    }
   });
+  
 
 // стало — всегда добавляем карточку в начало списка
 reflectionsList.appendChild(li);
