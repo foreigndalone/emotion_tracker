@@ -35,13 +35,26 @@ export function renderReflection(reflection, reflectionsList) {
       localStorage.setItem('reflections', JSON.stringify(updated));
       li.remove();
     }
+    
     if (confirm('Delete this reflection?')) {
-      const saved = JSON.parse(localStorage.getItem('db_reflecctions')) || [];
-      const updated = saved.filter(r =>
-        !(r.userText === reflection.userText &&
-          r.userMood === reflection.userMood &&
-          r.dateOfReflection === reflection.dateOfReflection)
-      );
+      const userIdRefId = {
+        Id: reflection.id,
+        userId: localStorage.getItem("userId")
+      }
+      fetch('http://127.0.0.1:5050/api/delete_reflection', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(userIdRefId)
+      })
+        .then(response => response.json())  // 👈 сначала преобразуем ответ в JSON
+          .then(data => {
+            console.log('Server response:', data); // теперь ты увидишь строку "Name Error!" или "Recieved user..."
+            const db_reflections = data
+            localStorage.setItem('db_reflections', JSON.stringify(db_reflections))
+          })
+          .catch(error => {
+            console.error("Fetch error:", error);
+      });
       localStorage.setItem('reflections', JSON.stringify(updated));
       li.remove();
     }

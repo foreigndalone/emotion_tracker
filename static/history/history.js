@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         console.log('Server response:', data); // теперь ты увидишь строку "Name Error!" или "Recieved user..."
         const db_reflections = data
-        localStorage.setItem('db_reflections',db_reflections)
+        localStorage.setItem('db_reflections', JSON.stringify(db_reflections))
       })
       .catch(error => {
         console.error("Fetch error:", error);
@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     refs.forEach(ref => renderReflection(ref, reflectionsList));
   }
-
-  renderReflections(localStorage.getItem('db_reflections'));
+  const reflectionsFromDB = JSON.parse(localStorage.getItem('db_reflections')) || [];
+  renderReflections(reflectionsFromDB);
 
   // === FILTERING ===
   applyFilterBtn.addEventListener('click', () => {

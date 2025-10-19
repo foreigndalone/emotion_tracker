@@ -205,6 +205,22 @@ def getReflections():
     return jsonify(reflections), 200
 
 
+@app.route("/api/delete_reflection", methods=["POST", "OPTIONS"])
+def deleteReflections():
+    if request.method == "OPTIONS":
+        return ("", 204)
+    
+    if not request.is_json:
+        abort(400, description="Request must be JSON with Content‑Type: application/json")
+
+    payload = request.get_json(silent=True) or {}
+    userId = payload.get('userId')
+    id = payload.get('Id')
+
+    reflections = db_controller.delete_reflection_db(id, userId)
+    return jsonify(reflections), 200
+
+
 # ENTRY‑POINT
 if __name__ == "__main__":
     PORT = int(os.getenv("PORT", 5050))
