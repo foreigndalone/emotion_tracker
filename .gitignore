@@ -1,2 +1,4 @@
 server/wsgi.py
 server/venv/
+.DS_Store
+.vscode/
