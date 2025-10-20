@@ -138,25 +138,65 @@ def addUserGoal():
 
 
 # RECIEVING USER'S REMINDER'S TIME
-@app.route("/api/add_user_reminders", methods=["POST"])
+@app.route("/api/add_user_reminder", methods=["POST", "OPTIONS"])
 def addUserReminderTime():
+    if request.method == "OPTIONS":
+        return ("", 204)
+    
     if not request.is_json:
         abort(400, description="Request must be JSON with Content‑Type: application/json")
 
-    reminders = request.get_json(silent=True) or {}
+    payload = request.get_json(silent=True) or {}
+    reminder = payload.get("reminder")
+    userId = payload.get("userId")
 
-    if not len(reminders):
+    if not userId or not reminder:
         abort(400, description="Field 'choice' is required")
 
-    print(f"Reminder time: {reminders}")
+    reminders = db_controller.add_reminder_db(userId, reminder)
+    print(f"Reminder time: {reminder}")
 
-    response_data = "Recieved user's goal!"
+    return Response(
+        json.dumps(reminders, ensure_ascii=False),
+        content_type="application/json"
+    ), 200
+
+@app.route("/api/delete_reminder", methods=["POST", "OPTIONS"])
+def deleteReminder():
+    if request.method == "OPTIONS":
+        return ("", 204)
+    
+    if not request.is_json:
+        abort(400, description="Request must be JSON with Content‑Type: application/json")
+
+    payload = request.get_json(silent=True) or {}
+    userId = payload.get('userId')
+    reminder = payload.get('reminder')
+
+    reminders = db_controller.delete_reminder_db(userId, reminder)
+    return jsonify(reminders), 200
+
+@app.route("/api/get_user_reminders", methods=["POST", "OPTIONS"])
+def getUserReminders():
+    if request.method == "OPTIONS":
+        return ("", 204)
+    if not request.is_json:
+        abort(400, description="Request must be JSON with Content‑Type: application/json")
+
+    payload = request.get_json(silent=True) or {}
+    userId = payload.get("userId")
+
+    if not userId:
+        abort(400, description="Field 'choice' is required")
+
+    reminders = db_controller.get_reminders_db(userId)
+
+    response_data = reminders
 
     return Response(
         json.dumps(response_data, ensure_ascii=False),
         content_type="application/json"
     ), 200
-
 
 
 # RECIEVING USER'S REFLECTIONS
@@ -166,7 +206,6 @@ def addReflection():
         abort(400, description="Request must be JSON with Content‑Type: application/json")
 
     payload = request.get_json(silent=True) or {}
-    print(payload)
     user_id = payload.get("userId")
     text = payload.get('userText')
     mood = payload.get('userMood')

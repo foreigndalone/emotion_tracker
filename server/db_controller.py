@@ -23,7 +23,20 @@ class DBController:
             ORDER BY date_time DESC;
         """
         self.delete_reflection = """
-            DELETE FROM reflections WHERE id = %s AND user_id = %s
+            DELETE FROM reflections WHERE id = %s AND user_id = %s;
+        """
+
+        self.add_reminder = """
+            INSERT INTO reminders (user_id, timestamp)
+            VALUES (%s, %s);
+        """
+
+        self.delete_reminder = """
+            DELETE FROM reminders WHERE user_id = %s AND timestamp = %s;
+        """
+
+        self.get_user_reminders = """
+            SELECT timestamp FROM reminders WHERE user_id = %s;
         """
 
         #ADD / GET PERSONAL DATA 
@@ -69,9 +82,8 @@ class DBController:
         #ADD / GET REFLECTION
     def add_reflection_db(self, user_id, mood, text):
         with self.connection.cursor() as cursor:
-            cursor.execute(self.add_reflection, (user_id, mood, text))
+            cursor.execute(self.add_reflection, (user_id, mood, text,))
             self.connection.commit()
-            print(user_id, mood, text)
 
     def get_reflections_db(self, user_id):
         with self.connection.cursor() as cursor:
@@ -86,9 +98,33 @@ class DBController:
                     "dateOfReflection": str(row[3])
                 })
             return reflections
+        
+
     def delete_reflection_db(self, id, user_id):
         with self.connection.cursor() as cursor:
-            cursor.execute(self.delete_reflection, (id, user_id))
+            cursor.execute(self.delete_reflection, (id, user_id,))
             self.connection.commit()
             return self.get_reflections_db(user_id)
         
+    
+    def add_reminder_db(self, user_id, reminder):
+        with self.connection.cursor() as cursor:
+            input_values = (user_id, reminder, )
+            cursor.execute(self.add_reminder, input_values)
+            self.connection.commit()
+            return self.get_reminders_db(user_id)
+    
+    def get_reminders_db(self, user_id):
+        with self.connection.cursor() as cursor:
+            cursor.execute(self.get_user_reminders, (user_id,))
+            reminders = cursor.fetchall()
+            reminders = [reminder[0].strftime('%H:%M') for reminder in reminders]
+            return reminders
+    
+    def delete_reminder_db(self, user_id, reminder):
+        with self.connection.cursor() as cursor:
+            input_values = (user_id, reminder,)
+            cursor.execute(self.delete_reminder, input_values)
+            self.connection.commit()
+            return self.get_reminders_db(user_id)
+            

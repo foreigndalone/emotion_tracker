@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
         userGoal: localStorage.getItem('goal'),
       };
 
-      fetch('http://127.0.0.1:5000/api/add_user_goal', {
+      fetch('http://127.0.0.1:5050/api/add_user_goal', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(goal)
@@ -158,10 +158,27 @@ document.addEventListener('DOMContentLoaded', function () {
   attachScroll(hoursList, 'reminderHour');
   attachScroll(minutesList, 'reminderMinute');
 
+  fetch('http://127.0.0.1:5050/api/get_user_reminders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({userId: localStorage.getItem("userId")})
+      })
+      .then(response => response.json())  // 👈 сначала преобразуем ответ в JSON
+        .then(data => {
+          console.log('Server response:', data); // теперь ты увидишь строку "Name Error!" или "Recieved user..."
+          const db_reminders = data
+          console.log(data)
+          localStorage.setItem('reminderTimes', JSON.stringify(db_reminders))
+        })
+        .catch(error => {
+          console.error("Fetch error:", error);
+      });
   // === SAVED REMINDERS ===
   let reminders = JSON.parse(localStorage.getItem('reminderTimes')) || [];
 
   function renderReminders() {
+    reminders = JSON.parse(localStorage.getItem('reminderTimes')) || [];
+
     reminderList.innerHTML = '';
     reminders.forEach((time, index) => {
       const li = document.createElement('li');
@@ -180,29 +197,88 @@ document.addEventListener('DOMContentLoaded', function () {
     const time = `${hour}:${minute}`;
 
     if (!reminders.includes(time)) {
-      reminders.push(time);
-      localStorage.setItem('reminderTimes', JSON.stringify(reminders));
-      renderReminders();
-      saveBtn.textContent = 'Added!';
-      saveBtn.style.background = '#f4f4ff';
-      setTimeout(() => {
-        saveBtn.textContent = 'Save';
-        saveBtn.style.background = '#fff';
-      }, 700);
+      // reminders.push(time);
+      // localStorage.setItem('reminderTimes', JSON.stringify(reminders));
+      // renderReminders();
+      // saveBtn.textContent = 'Added!';
+      // saveBtn.style.background = '#f4f4ff';
+      // setTimeout(() => {
+      //   saveBtn.textContent = 'Save';
+      //   saveBtn.style.background = '#fff';
+      // }, 700);
+
+      // новая тема
+      const userIdReminderJSON = {
+        userId: localStorage.getItem("userId"),
+        reminder: time
+      }
+      //SENDING DATA TO SERVER//
+      fetch('http://127.0.0.1:5050/api/add_user_reminder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userIdReminderJSON)
+      })
+      .then(response => response.json())  // 👈 сначала преобразуем ответ в JSON
+        .then(data => {
+          console.log('Server response:', data); // теперь ты увидишь строку "Name Error!" или "Recieved user...
+          const db_reminders = data
+          localStorage.setItem('reminderTimes', JSON.stringify(db_reminders))
+          renderReminders();
+          saveBtn.textContent = 'Added!';
+          saveBtn.style.background = '#f4f4ff';
+          setTimeout(() => {
+            saveBtn.textContent = 'Save';
+            saveBtn.style.background = '#fff';
+          }, 700);
+        })
+        .catch(error => {
+          console.error("Fetch error:", error);
+      });
     } else {
       alert(`You already added ${time}`);
     }
   });
 
+  // // === удаление отдельного напоминания ===
+  // reminderList.addEventListener('click', (e) => {
+  //   console.log(e)
+  //   if (e.target.tagName === 'BUTTON') {
+  //     const index = e.target.dataset.index;
+  //     reminders.splice(index, 1);
+  //     localStorage.setItem('reminderTimes', JSON.stringify(reminders));
+  //     renderReminders();
+  //   }
+  // });
+
   // === удаление отдельного напоминания ===
   reminderList.addEventListener('click', (e) => {
+    console.log(e)
     if (e.target.tagName === 'BUTTON') {
       const index = e.target.dataset.index;
-      reminders.splice(index, 1);
-      localStorage.setItem('reminderTimes', JSON.stringify(reminders));
-      renderReminders();
+      const reminder_to_delete = reminders[index];
+      const userIdReminderToDeleteJSON = {
+        userId: localStorage.getItem("userId"),
+        reminder: reminder_to_delete
+      }
+
+      fetch('http://127.0.0.1:5050/api/delete_reminder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userIdReminderToDeleteJSON)
+      })
+      .then(response => response.json())  // 👈 сначала преобразуем ответ в JSON
+        .then(data => {
+          console.log('Server response:', data); // теперь ты увидишь строку "Name Error!" или "Recieved user...
+          const db_reminders = data
+          localStorage.setItem('reminderTimes', JSON.stringify(db_reminders))
+          renderReminders();
+        })
+        .catch(error => {
+          console.error("Fetch error:", error);
+      });
     }
   });
+
 
   // === Cancel — очистка всех напоминаний ===
   cancelBtn.addEventListener('click', () => {
@@ -223,13 +299,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // сохраняем последнее выбранное время (для удобства)
     const lastTime = reminders[reminders.length - 1];
     localStorage.setItem('reminderTime', lastTime);
-
-    //SENDING DATA TO SERVER//
-    fetch('http://127.0.0.1:5000/api/add_user_reminders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(reminders)
-      })
 
     window.location.href = 'welcome_step4.html';
   });
