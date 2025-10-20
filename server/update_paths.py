@@ -2,7 +2,7 @@ import os
 
 
 js_files_paths = []
-for path, folders, filenames in os.walk("static/"):
+for path, folders, filenames in os.walk("../static/"):
     for filename in filenames:
         if filename.endswith(".js"):
             js_file_path = os.path.join(path, filename)

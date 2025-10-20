@@ -2,3 +2,4 @@ server/wsgi.py
 server/venv/
 .DS_Store
 .vscode/
+server/update_paths.py
