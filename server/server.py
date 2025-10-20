@@ -11,6 +11,14 @@ CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 import psycopg2
 from db_controller import DBController
 
+from flask import jsonify
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # Возвращаем JSON с ошибкой
+    response = {"error": str(e)}
+    return jsonify(response), 500
+
 
 # UNIVERSAL REQUEST HANDLER
 @app.after_request
@@ -140,12 +148,13 @@ def addUserGoal():
 # RECIEVING USER'S REMINDER'S TIME
 @app.route("/api/add_user_reminder", methods=["POST", "OPTIONS"])
 def addUserReminderTime():
+    print(1)
     if request.method == "OPTIONS":
         return ("", 204)
-    
+    print(2)
     if not request.is_json:
         abort(400, description="Request must be JSON with Content‑Type: application/json")
-
+    print(3)
     payload = request.get_json(silent=True) or {}
     reminder = payload.get("reminder")
     userId = payload.get("userId")
