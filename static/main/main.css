@@ -17,7 +17,7 @@ body {
   font-family: "Inter", sans-serif;
   color: #222;
   gap: 3vw;
-  padding-top: 5vw;
+  padding-top: 2vw;
 }
 
 /* === HEADER / NAVIGATION === */
@@ -48,6 +48,7 @@ body {
   text-align: center;
   width: 60vw;
   gap: 2vw;
+  margin-top: 6vw;
 }
 
 .intro__title {
@@ -63,7 +64,7 @@ body {
 
 /* === BUTTONS === */
 .button {
-  margin-top: 2vw;
+  margin-top: 4vw;
   width: 16vw;
   padding: 1vw 0;
   border: 0.15vw solid #ccc;
@@ -270,21 +271,26 @@ body {
 @media (max-width: 768px) {
 
   body {
-    padding-top: 6vw;
+    padding-top: 0vw;
     gap: 12vw;
     background: #fafafa;
   }
 
   /* === NAVIGATION === */
   .nav__list {
+    width: 100vw;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 5vw;
+    padding: 5vw 0;
+    background: #fff;
+    box-shadow: 0 0 4vw rgba(0,0,0,0.05);
+    border-radius: 0 0 4vw 4vw;
   }
 
   .nav__link {
-    font-size: 3.4vw; /* ⬅️ чуть меньше */
-    color: #555;
-    font-weight: 400;
+    font-size: 4vw;
+    color: #444;
   }
 
   .nav__link.active {
@@ -297,6 +303,7 @@ body {
     width: 90vw;
     gap: 10vw; /* больше воздуха между intro и reflections */
     text-align: center;
+    margin-top: 10vw;
   }
 
   .intro__title {
@@ -339,12 +346,12 @@ body {
   /* === REFLECTIONS SECTION === */
   .reflections {
     width: 92vw;
-    margin-top: 4vw;   /* чуть меньше чем было */
+    margin-top: 14vw;   /* чуть меньше чем было */
     gap: 5vw;
   }
 
   .reflections__title {
-    font-size: 5.4vw; /* больше, чтобы появилась иерархия */
+    font-size: 5vw; /* больше, чтобы появилась иерархия */
     font-weight: 700;
     margin-bottom: 2.5vw;
     color: #111;

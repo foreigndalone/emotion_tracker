@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
       li.innerHTML = `
         <span>${time}</span>
         <div class="reminder-actions">
-          <button class="button button--secondary" data-index="${index}">Edit</button>
           <button class="button button--danger" data-index="${index}">✕</button>
         </div>
       `;

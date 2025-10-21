@@ -14,7 +14,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 3vw;
-  padding-top: 5vw;
+  padding-top: 2vw;
 }
 
 /* === HEADER === */
@@ -301,20 +301,26 @@ input[type="date"] {
 @media (max-width: 768px) {
 
   body {
-    padding-top: 6vw;
+    padding-top: 0vw;
     gap: 10vw;
     background: #fafafa;
   }
 
   /* === NAVIGATION === */
-  .nav__list {
+   .nav__list {
+    width: 100vw;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 5vw;
+    padding: 5vw 0;
+    background: #fff;
+    box-shadow: 0 0 4vw rgba(0,0,0,0.05);
+    border-radius: 0 0 4vw 4vw;
   }
 
   .nav__link {
-    font-size: 3.4vw;
-    color: #555;
+    font-size: 4vw;
+    color: #444;
   }
 
   .nav__link.active {
