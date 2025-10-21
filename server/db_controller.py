@@ -35,6 +35,10 @@ class DBController:
             DELETE FROM reminders WHERE user_id = %s AND timestamp = %s;
         """
 
+        self.delete_all_reminders = """
+            DELETE FROM reminders WHERE user_id = %s;
+        """
+
         self.get_user_reminders = """
             SELECT timestamp FROM reminders WHERE user_id = %s;
         """
@@ -84,6 +88,7 @@ class DBController:
         with self.connection.cursor() as cursor:
             cursor.execute(self.add_reflection, (user_id, mood, text,))
             self.connection.commit()
+            return self.get_reflections_db(user_id)
 
     def get_reflections_db(self, user_id):
         with self.connection.cursor() as cursor:
@@ -127,4 +132,8 @@ class DBController:
             cursor.execute(self.delete_reminder, input_values)
             self.connection.commit()
             return self.get_reminders_db(user_id)
-            
+    
+    def delete_all_reminders_db(self, user_id):
+        with self.connection.cursor() as cursor:
+            cursor.execute(self.delete_all_reminders, (user_id, ))
+            self.connection.commit()    

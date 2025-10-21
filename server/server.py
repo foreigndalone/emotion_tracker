@@ -148,13 +148,10 @@ def addUserGoal():
 # RECIEVING USER'S REMINDER'S TIME
 @app.route("/api/add_user_reminder", methods=["POST", "OPTIONS"])
 def addUserReminderTime():
-    print(1)
     if request.method == "OPTIONS":
         return ("", 204)
-    print(2)
     if not request.is_json:
         abort(400, description="Request must be JSON with Content‑Type: application/json")
-    print(3)
     payload = request.get_json(silent=True) or {}
     reminder = payload.get("reminder")
     userId = payload.get("userId")
@@ -185,6 +182,23 @@ def deleteReminder():
     reminders = db_controller.delete_reminder_db(userId, reminder)
     return jsonify(reminders), 200
 
+@app.route("/api/delete_all_reminders", methods=["POST"])
+def deleteAllReminders():
+    print("goos")
+    if not request.is_json:
+        abort(400, description="Request must be JSON with Content‑Type: application/json")
+
+    payload = request.get_json(silent=True) or {}
+    userId = payload.get('userId')
+
+    db_controller.delete_all_reminders_db(userId)
+    response_data =  "Reflection saved successfully"
+
+    return Response(
+        json.dumps(response_data, ensure_ascii=False),
+        content_type="application/json"
+    ), 200
+
 @app.route("/api/get_user_reminders", methods=["POST", "OPTIONS"])
 def getUserReminders():
     if request.method == "OPTIONS":
@@ -209,8 +223,11 @@ def getUserReminders():
 
 
 # RECIEVING USER'S REFLECTIONS
-@app.route("/api/add_reflection", methods=["POST"])
+@app.route("/api/add_reflection", methods=["POST", "OPTIONS"])
 def addReflection():
+    if request.method == "OPTIONS":
+        return ("", 204)
+    
     if not request.is_json:
         abort(400, description="Request must be JSON with Content‑Type: application/json")
 
@@ -218,38 +235,23 @@ def addReflection():
     user_id = payload.get("userId")
     text = payload.get('userText')
     mood = payload.get('userMood')
-    dateOfReflection = payload.get('dateOfReflection')
 
     if not user_id or not text or not mood:
         abort(400, description="Field 'choice' is required")
 
-    db_controller.add_reflection_db(user_id, mood, text)
-
-    print(f"Reflection added for user {user_id}: {text} ({mood}) {dateOfReflection}")
-
-    response_data =  "Reflection saved successfully"
-
-    return Response(
-        json.dumps(response_data, ensure_ascii=False),
-        content_type="application/json"
-    ), 200
-
-
-
-
+    reflections = db_controller.add_reflection_db(user_id, mood, text)
+    print(reflections)
+    return jsonify(reflections), 200
 
 # GET ALL REFLECTIONS OF USER
 @app.route("/api/get_reflections", methods=["POST"])
 def getReflections():
-    print('pipiski')
     if not request.is_json:
         abort(400, description="Request must be JSON with Content‑Type: application/json")
 
     payload = request.get_json(silent=True) or {}
     userId = payload.get('userId')
-    print(userId)
     reflections = db_controller.get_reflections_db(userId)
-    print(f'{reflections} pipiski nashi')
     return jsonify(reflections), 200
 
 
